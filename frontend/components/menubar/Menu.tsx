@@ -27,6 +27,7 @@ export default function Menu() {
                 <MenubarItem
                   key={subItem.id}
                   className="cursor-pointer rounded-md px-2. py-1.5 text-xs"
+                  onClick={subItem.action}
                 >
                   {subItem.label}
                   {subItem.shortcut && (

@@ -11,6 +11,7 @@ interface FileState {
   activeFileId: string | null;
   newFile: () => void;
   setActiveFile: (id: string) => void;
+  updateFileContent: (id: string, content: string) => void;
 }
 
 let untitledCount = 0;
@@ -18,6 +19,7 @@ let untitledCount = 0;
 export const useFileStore = create<FileState>((set) => ({
   files: [],
   activeFileId: null,
+  // New File Menu
   newFile: () => {
     untitledCount += 1;
     const id = crypto.randomUUID();
@@ -30,4 +32,8 @@ export const useFileStore = create<FileState>((set) => ({
     }));
   },
   setActiveFile: (id) => set({ activeFileId: id }),
+  updateFileContent: (id, content) =>
+    set((state) => ({
+      files: state.files.map((f) => (f.id === id ? { ...f, content } : f)),
+    })),
 }));
