@@ -1,0 +1,231 @@
+import { useFileStore } from "@/store/file.store";
+
+export type MenubarItemConfig = {
+  id?: string;
+  type?: "item" | "separator";
+  label?: string;
+  shortcut?: string;
+  action?: () => void;
+};
+
+export interface MenuConfig {
+  id: string;
+  trigger: string;
+  items: MenubarItemConfig[];
+}
+
+export const menuConfig: MenuConfig[] = [
+  {
+    id: "file",
+    trigger: "File",
+    items: [
+      {
+        id: "new-file",
+        type: "item",
+        label: "New File",
+        shortcut: "Ctrl+N",
+        action: () => useFileStore.getState().newFile(),
+      },
+      {
+        id: "open-file",
+        type: "item",
+        label: "Open File…",
+        shortcut: "Ctrl+O",
+      },
+      {
+        id: "open-folder",
+        type: "item",
+        label: "Open Folder…",
+        shortcut: "Ctrl+K Ctrl+O",
+      },
+      { type: "separator" },
+      { id: "save", type: "item", label: "Save", shortcut: "Ctrl+S" },
+      {
+        id: "save-as",
+        type: "item",
+        label: "Save As…",
+        shortcut: "Ctrl+Shift+S",
+      },
+      { id: "save-all", type: "item", label: "Save All", shortcut: "Ctrl+K S" },
+      { type: "separator" },
+      {
+        id: "close-editor",
+        type: "item",
+        label: "Close Editor",
+        shortcut: "Ctrl+W",
+      },
+      { type: "separator" },
+      { id: "exit", type: "item", label: "Exit", shortcut: "Ctrl+Q" },
+    ],
+  },
+  {
+    id: "edit",
+    trigger: "Edit",
+    items: [
+      {
+        id: "undo",
+        type: "item",
+        label: "Undo",
+        shortcut: "Ctrl+Z",
+      },
+      {
+        id: "redo",
+        type: "item",
+        label: "Redo",
+        shortcut: "Ctrl+Y",
+      },
+      { type: "separator" },
+      {
+        id: "cut",
+        type: "item",
+        label: "Cut",
+        shortcut: "Ctrl+X",
+      },
+      {
+        id: "copy",
+        type: "item",
+        label: "Copy",
+        shortcut: "Ctrl+C",
+      },
+      {
+        id: "paste",
+        type: "item",
+        label: "Paste",
+        shortcut: "Ctrl+V",
+      },
+      { type: "separator" },
+      {
+        id: "find",
+        type: "item",
+        label: "Find",
+        shortcut: "Ctrl+F",
+      },
+      {
+        id: "replace",
+        type: "item",
+        label: "Replace",
+        shortcut: "Ctrl+H",
+      },
+    ],
+  },
+  {
+    id: "selection",
+    trigger: "Selection",
+    items: [
+      {
+        id: "select-all",
+        type: "item",
+        label: "Select All",
+        shortcut: "Ctrl+A",
+      },
+      {
+        id: "expand-selection",
+        type: "item",
+        label: "Expand Selection",
+        shortcut: "Shift+Alt+→",
+      },
+      {
+        id: "shrink-selection",
+        type: "item",
+        label: "Shrink Selection",
+        shortcut: "Shift+Alt+←",
+      },
+      { type: "separator" },
+      {
+        id: "copy-line-up",
+        type: "item",
+        label: "Copy Line Up",
+        shortcut: "Shift+Alt+↑",
+      },
+      {
+        id: "copy-line-down",
+        type: "item",
+        label: "Copy Line Down",
+        shortcut: "Shift+Alt+↓",
+      },
+    ],
+  },
+  {
+    id: "trigger",
+    trigger: "View",
+    items: [
+      {
+        id: "command-palette",
+        type: "item",
+        label: "Command Palette…",
+        shortcut: "Ctrl+Shift+P",
+      },
+      { type: "separator" },
+      { id: "zoom-in", type: "item", label: "Zoom In", shortcut: "Ctrl+=" },
+      { id: "zoom-out", type: "item", label: "Zoom Out", shortcut: "Ctrl+-" },
+      {
+        id: "reset-zoom",
+        type: "item",
+        label: "Reset Zoom",
+        shortcut: "Ctrl+0",
+      },
+      { type: "separator" },
+      {
+        id: "project-panel",
+        type: "item",
+        label: "Project Panel",
+      },
+      {
+        id: "terminal-panel",
+        type: "item",
+        label: "Terminal Panel",
+      },
+      {
+        id: "visualizer-panel",
+        type: "item",
+        label: "Visualizer Panel",
+      },
+    ],
+  },
+  {
+    id: "run",
+    trigger: "Run",
+    items: [
+      {
+        id: "run",
+        type: "item",
+        label: "Run Program",
+        shortcut: "F5",
+      },
+      {
+        id: "debug",
+        type: "item",
+        label: "Debug Program",
+        shortcut: "F9",
+      },
+    ],
+  },
+  {
+    id: "help",
+    trigger: "Help",
+    items: [
+      {
+        id: "documentation",
+        type: "item",
+        label: "Documentation",
+      },
+      { type: "separator" },
+      {
+        id: "report-bug",
+        type: "item",
+        label: "Report Bug…",
+      },
+      {
+        id: "request-feature",
+        type: "item",
+        label: "Request Feature…",
+      },
+      { type: "separator" },
+      {
+        id: "about",
+        type: "item",
+        label: "About AlgoLens",
+      },
+    ],
+  },
+];
