@@ -15,13 +15,10 @@ interface FileState {
   updateFileContent: (id: string, content: string) => void;
 }
 
-let untitledCount = 0;
-
 function createUntitledFile(): FileTab {
-  untitledCount += 1;
   return {
     id: crypto.randomUUID(),
-    name: `Untitled-${untitledCount}`,
+    name: `Untitled`,
     content: "",
   };
 }

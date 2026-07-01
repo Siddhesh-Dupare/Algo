@@ -1,6 +1,8 @@
 "use client";
 
 import Editor, { OnChange } from "@monaco-editor/react";
+import Tabs from "./Tabs";
+import NoFile from "./NoFile";
 import { useFileStore } from "@/store/file.store";
 
 export default function MonacoEditor() {
@@ -9,27 +11,28 @@ export default function MonacoEditor() {
   );
   const updateFileContent = useFileStore((s) => s.updateFileContent);
 
-  if (!file) {
-    return (
-      <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-        No file open
-      </div>
-    );
-  }
-
   const handleChange: OnChange = (value) => {
-    updateFileContent(file.id, value ?? "");
+    if (file) updateFileContent(file.id, value ?? "");
   };
 
   return (
-    <Editor
-      key={file.id}
-      className="h-full"
-      theme="vs-dark"
-      language="python"
-      value={file.content}
-      onChange={handleChange}
-      options={{ fontSize: 13, minimap: { enabled: false } }}
-    />
+    <div className="flex h-full flex-col">
+      <Tabs />
+      <div className="min-h-0 flex-1">
+        {file ? (
+          <Editor
+            key={file.id}
+            height="100%"
+            theme="vs-dark"
+            language="python"
+            value={file.content}
+            onChange={handleChange}
+            options={{ fontSize: 13, minimap: { enabled: false } }}
+          />
+        ) : (
+          <NoFile />
+        )}
+      </div>
+    </div>
   );
 }
