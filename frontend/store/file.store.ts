@@ -10,27 +10,44 @@ interface FileState {
   files: FileTab[];
   activeFileId: string | null;
   newFile: () => void;
+  closeFile: (id: string) => void;
   setActiveFile: (id: string) => void;
   updateFileContent: (id: string, content: string) => void;
 }
 
 let untitledCount = 0;
 
+function createUntitledFile(): FileTab {
+  untitledCount += 1;
+  return {
+    id: crypto.randomUUID(),
+    name: `Untitled-${untitledCount}`,
+    content: "",
+  };
+}
+
+const initialFile = createUntitledFile();
+
 export const useFileStore = create<FileState>((set) => ({
-  files: [],
-  activeFileId: null,
+  files: [initialFile],
+  activeFileId: initialFile.id,
   // New File Menu
   newFile: () => {
-    untitledCount += 1;
-    const id = crypto.randomUUID();
+    const file = createUntitledFile();
     set((state) => ({
-      files: [
-        ...state.files,
-        { id, name: `Untitled-${untitledCount}`, content: "" },
-      ],
-      activeFileId: id,
+      files: [...state.files, file],
+      activeFileId: file.id,
     }));
   },
+  closeFile: (id) =>
+    set((state) => {
+      const files = state.files.filter((f) => f.id != id);
+      const activeFileId =
+        state.activeFileId === id
+          ? (files[files.length - 1]?.id ?? null)
+          : state.activeFileId;
+      return { files, activeFileId };
+    }),
   setActiveFile: (id) => set({ activeFileId: id }),
   updateFileContent: (id, content) =>
     set((state) => ({
