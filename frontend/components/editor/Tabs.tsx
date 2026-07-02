@@ -10,13 +10,13 @@ export default function Tabs() {
   const closeFile = useFileStore((s) => s.closeFile);
 
   return (
-    <div className="flex h-7 items-center border border-white/8 bg-neutral-950">
+    <div className="flex h-7 items-center border border-border bg-muted">
       {files.map((file) => (
         <div
           key={file.id}
           onClick={() => setActiveFile(file.id)}
           data-active={file.id === activeFileId}
-          className="flex items-center gap-2 border border-stone-900 px-3 text-xs text-neutral-400 data-[active=true]:bg-stone-900 data-[active=true]:text-white"
+          className="flex items-center gap-2 border border-border px-3 text-xs text-muted-foreground data-[active=true]:bg-accent data-[active=true]:text-foreground"
         >
           <span>{file.name}</span>
           <Button

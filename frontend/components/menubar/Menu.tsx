@@ -18,7 +18,7 @@ export default function Menu() {
           <MenubarTrigger className="cursor-pointer rounded-md px-2.5 text-xs font-medium transition-colors">
             {menu.trigger}
           </MenubarTrigger>
-          <MenubarContent className="min-w-56 rounded-lg border border-white/10 p-1">
+          <MenubarContent className="min-w-56 rounded-lg border border-border p-1">
             {menu.items.map((subItem, index) => {
               if (subItem.type === "separator") {
                 return <MenubarSeparator key={`separator-${index}`} />;

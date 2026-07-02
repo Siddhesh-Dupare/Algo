@@ -1,4 +1,5 @@
 import { useFileStore } from "@/store/file.store";
+import { useThemeStore } from "@/store/theme.store";
 
 export type MenubarItemConfig = {
   id?: string;
@@ -15,6 +16,24 @@ export interface MenuConfig {
 }
 
 export const menuConfig: MenuConfig[] = [
+  {
+    id: "algolens",
+    trigger: "AlgoLens",
+    items: [
+      {
+        id: "settings",
+        type: "item",
+        label: "Settings...",
+      },
+      { type: "separator" },
+      {
+        id: "theme",
+        type: "item",
+        label: "Set theme...",
+        action: () => useThemeStore.getState().setDialogOpen(true),
+      },
+    ],
+  },
   {
     id: "file",
     trigger: "File",

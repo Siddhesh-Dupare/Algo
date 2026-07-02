@@ -4,6 +4,7 @@ import Editor, { OnChange } from "@monaco-editor/react";
 import Tabs from "./Tabs";
 import NoFile from "./NoFile";
 import { useFileStore } from "@/store/file.store";
+import { useThemeStore } from "@/store/theme.store";
 
 export default function MonacoEditor() {
   const file = useFileStore((s) =>
@@ -15,6 +16,8 @@ export default function MonacoEditor() {
     if (file) updateFileContent(file.id, value ?? "");
   };
 
+  const theme = useThemeStore((s) => s.theme);
+
   return (
     <div className="flex h-full flex-col">
       <Tabs />
@@ -23,7 +26,7 @@ export default function MonacoEditor() {
           <Editor
             key={file.id}
             height="100%"
-            theme="vs-dark"
+            theme={theme === "dark" ? "vs-dark" : "light"}
             language="python"
             value={file.content}
             onChange={handleChange}
