@@ -9,7 +9,7 @@ export default function Sidebar() {
   if (!sidebarOpen) return null;
 
   return (
-    <div className="w-56 shrink-0 border-r border-border bg-muted/30">
+    <div className="h-full border-r border-border bg-muted/30">
       <FileTree />
     </div>
   );

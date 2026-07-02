@@ -1,8 +1,15 @@
 "use client";
 
-import { ChevronRight, Folder, FolderOpen, File as FileIcon } from "lucide-react";
+import {
+  ChevronRight,
+  Folder,
+  FolderOpen,
+  File as FileIcon,
+} from "lucide-react";
 import { useFolderStore, type FolderNode } from "@/store/folder.store";
 import { useFileStore } from "@/store/file.store";
+
+import { Button } from "../ui/button";
 
 function TreeRow({ node, depth }: { node: FolderNode; depth: number }) {
   const expanded = useFolderStore((s) => s.expanded.has(node.path));
@@ -63,12 +70,14 @@ export default function FileTree() {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-2 p-4 text-center text-xs text-muted-foreground">
         <span>No folder opened</span>
-        <button
+        <Button
+          variant="outline"
+          size="sm"
           onClick={openFolder}
           className="cursor-pointer rounded-md border border-border px-2 py-1 text-xs hover:bg-accent hover:text-foreground"
         >
           Open Folder
-        </button>
+        </Button>
       </div>
     );
   }

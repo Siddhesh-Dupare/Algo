@@ -21,7 +21,7 @@ export default function MonacoEditor() {
   return (
     <div className="flex h-full flex-col">
       {file ? (
-        <div className="mlin-h-0 flex-1">
+        <div className="min-h-0 flex-1 overflow-hidden">
           <Tabs />
           <Editor
             key={file.id}
