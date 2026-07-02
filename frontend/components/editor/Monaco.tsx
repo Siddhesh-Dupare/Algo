@@ -20,9 +20,9 @@ export default function MonacoEditor() {
 
   return (
     <div className="flex h-full flex-col">
-      <Tabs />
-      <div className="min-h-0 flex-1">
-        {file ? (
+      {file ? (
+        <div className="mlin-h-0 flex-1">
+          <Tabs />
           <Editor
             key={file.id}
             height="100%"
@@ -32,10 +32,10 @@ export default function MonacoEditor() {
             onChange={handleChange}
             options={{ fontSize: 13, minimap: { enabled: false } }}
           />
-        ) : (
-          <NoFile />
-        )}
-      </div>
+        </div>
+      ) : (
+        <NoFile />
+      )}
     </div>
   );
 }
