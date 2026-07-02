@@ -42,7 +42,7 @@ export default async function RootLayout({
         theme === "dark" && "dark",
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="h-full flex flex-col overflow-hidden">{children}</body>
     </html>
   );
 }

@@ -9,7 +9,7 @@ export default function WindowControls() {
         <Button
           key={index}
           aria-label={window.label}
-          className={`flex h-9 w-11 items-center justify-center transition-colors rounded-none bg-transparent text-black ${window.color}`}
+          className={`flex h-9 w-11 items-center justify-center transition-colors rounded-none bg-transparent text-foreground ${window.color}`}
         >
           <window.symbol className="size-3.5" />
         </Button>

@@ -4,6 +4,7 @@ export interface FileTab {
   id: string;
   name: string;
   content: string;
+  handle?: FileSystemFileHandle;
 }
 
 interface FileState {
@@ -13,6 +14,7 @@ interface FileState {
   closeFile: (id: string) => void;
   setActiveFile: (id: string) => void;
   updateFileContent: (id: string, content: string) => void;
+  openFileFromHandle: (handle: FileSystemFileHandle) => Promise<void>;
 }
 
 function createUntitledFile(): FileTab {
@@ -25,7 +27,7 @@ function createUntitledFile(): FileTab {
 
 const initialFile = createUntitledFile();
 
-export const useFileStore = create<FileState>((set) => ({
+export const useFileStore = create<FileState>((set, get) => ({
   files: [initialFile],
   activeFileId: initialFile.id,
   // New File Menu
@@ -50,4 +52,18 @@ export const useFileStore = create<FileState>((set) => ({
     set((state) => ({
       files: state.files.map((f) => (f.id === id ? { ...f, content } : f)),
     })),
+  openFileFromHandle: async (handle) => {
+    const existing = get().files.find((f) => f.handle === handle);
+    if (existing) {
+      set({ activeFileId: existing.id });
+      return;
+    }
+    const file = await handle.getFile();
+    const content = await file.text();
+    const id = crypto.randomUUID();
+    set((state) => ({
+      files: [...state.files, { id, name: file.name, content, handle }],
+      activeFileId: id,
+    }));
+  },
 }));

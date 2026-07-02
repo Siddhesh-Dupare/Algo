@@ -1,5 +1,7 @@
 import { useFileStore } from "@/store/file.store";
 import { useThemeStore } from "@/store/theme.store";
+import { useFolderStore } from "@/store/folder.store";
+import { useUiStore } from "@/store/ui.store";
 
 export type MenubarItemConfig = {
   id?: string;
@@ -56,6 +58,7 @@ export const menuConfig: MenuConfig[] = [
         type: "item",
         label: "Open Folder…",
         shortcut: "Ctrl+K Ctrl+O",
+        action: () => useFolderStore.getState().openFolder(),
       },
       { type: "separator" },
       { id: "save", type: "item", label: "Save", shortcut: "Ctrl+S" },
@@ -188,6 +191,7 @@ export const menuConfig: MenuConfig[] = [
         id: "project-panel",
         type: "item",
         label: "Project Panel",
+        action: () => useUiStore.getState().toggleSidebar(),
       },
       {
         id: "terminal-panel",
