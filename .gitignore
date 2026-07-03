@@ -2,6 +2,10 @@
 
 # dependencies
 /frontend/node_modules
+/desktop/build
+/desktop/depot_tools
+/desktop/skia
+/desktop/external
 /.pnp
 .pnp.*
 .yarn/*
@@ -39,3 +43,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+__cmake_systeminformation
