@@ -45,7 +45,15 @@ export const useFolderStore = create<FolderState>((set, get) => ({
       alert("Open Folder isn't supported in this browser. Try Chrome or Edge.");
       return;
     }
-    const dirHandle = await window.showDirectoryPicker();
+    let dirHandle: FileSystemDirectoryHandle;
+    try {
+      dirHandle = await window.showDirectoryPicker();
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        return;
+      }
+      throw error;
+    }
     const children = await readChildren(dirHandle, dirHandle.name);
     set({
       root: {
