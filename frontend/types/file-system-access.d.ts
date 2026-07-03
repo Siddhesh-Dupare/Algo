@@ -7,9 +7,17 @@ declare global {
     isSameEntry(other: FileSystemHandle): Promise<boolean>;
   }
 
+  interface FileSystemWritableFileStream extends WritableStream {
+    write(data: string | BufferSource | Blob): Promise<void>;
+    close(): Promise<void>;
+  }
+
   interface FileSystemFileHandle extends FileSystemHandle {
     readonly kind: "file";
     getFile(): Promise<File>;
+    createWritable(options?: {
+      keepExistingData?: boolean;
+    }): Promise<FileSystemWritableFileStream>;
   }
 
   interface FileSystemDirectoryHandle extends FileSystemHandle {
@@ -34,5 +42,13 @@ declare global {
         accept: Record<string, string[]>;
       }[];
     }): Promise<FileSystemFileHandle[]>;
+    showSaveFilePicker(options?: {
+      suggestedName?: string;
+      excludeAcceptAllOption?: boolean;
+      types?: {
+        description?: string;
+        accept: Record<string, string[]>;
+      }[];
+    }): Promise<FileSystemFileHandle>;
   }
 }

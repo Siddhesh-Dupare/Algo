@@ -62,14 +62,33 @@ export const menuConfig: MenuConfig[] = [
         action: () => useFolderStore.getState().openFolder(),
       },
       { type: "separator" },
-      { id: "save", type: "item", label: "Save", shortcut: "Ctrl+S" },
+      {
+        id: "save",
+        type: "item",
+        label: "Save",
+        shortcut: "Ctrl+S",
+        action: () => {
+          const { activeFileId, saveFile } = useFileStore.getState();
+          if (activeFileId) saveFile(activeFileId);
+        },
+      },
       {
         id: "save-as",
         type: "item",
         label: "Save As…",
         shortcut: "Ctrl+Shift+S",
+        action: () => {
+          const { activeFileId, saveFileAs } = useFileStore.getState();
+          if (activeFileId) saveFileAs(activeFileId);
+        },
       },
-      { id: "save-all", type: "item", label: "Save All", shortcut: "Ctrl+K S" },
+      {
+        id: "save-all",
+        type: "item",
+        label: "Save All",
+        shortcut: "Ctrl+K S",
+        action: () => useFileStore.getState().saveAllFiles(),
+      },
       { type: "separator" },
       {
         id: "close-editor",
