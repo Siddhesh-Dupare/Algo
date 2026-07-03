@@ -2,6 +2,7 @@ import { useFileStore } from "@/store/file.store";
 import { useThemeStore } from "@/store/theme.store";
 import { useFolderStore } from "@/store/folder.store";
 import { useUiStore } from "@/store/ui.store";
+import { useCommandStore } from "@/store/command.store";
 
 export type MenubarItemConfig = {
   id?: string;
@@ -196,6 +197,7 @@ export const menuConfig: MenuConfig[] = [
         type: "item",
         label: "Command Palette…",
         shortcut: "Ctrl+Shift+P",
+        action: () => useCommandStore.getState().setDialogOpen(true),
       },
       { type: "separator" },
       { id: "zoom-in", type: "item", label: "Zoom In", shortcut: "Ctrl+=" },
