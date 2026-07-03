@@ -15,6 +15,7 @@ interface FileState {
   setActiveFile: (id: string) => void;
   updateFileContent: (id: string, content: string) => void;
   openFileFromHandle: (handle: FileSystemFileHandle) => Promise<void>;
+  openFile: () => Promise<void>;
 }
 
 function createUntitledFile(): FileTab {
@@ -65,5 +66,23 @@ export const useFileStore = create<FileState>((set, get) => ({
       files: [...state.files, { id, name: file.name, content, handle }],
       activeFileId: id,
     }));
+  },
+  openFile: async () => {
+    if (!("showOpenFilePicker" in window)) {
+      alert("Open File isn't supported in this browser. Try Chrome or Edge.");
+      return;
+    }
+    let handles: FileSystemFileHandle[];
+    try {
+      handles = await window.showOpenFilePicker({ multiple: true });
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        return;
+      }
+      throw error;
+    }
+    for (const handle of handles) {
+      await get().openFileFromHandle(handle);
+    }
   },
 }));

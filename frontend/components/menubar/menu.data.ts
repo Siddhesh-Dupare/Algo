@@ -52,6 +52,7 @@ export const menuConfig: MenuConfig[] = [
         type: "item",
         label: "Open File…",
         shortcut: "Ctrl+O",
+        action: () => useFileStore.getState().openFile(),
       },
       {
         id: "open-folder",
