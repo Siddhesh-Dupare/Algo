@@ -15,7 +15,7 @@ export default function Menu() {
     <Menubar className="h-auto gap-0.5 border-0 bg-transparent p-0 shadow-none">
       {menuConfig.map((menu) => (
         <MenubarMenu key={menu.id}>
-          <MenubarTrigger className="cursor-pointer rounded-md px-2.5 text-xs font-medium transition-colors">
+          <MenubarTrigger className="rounded-md px-2.5 text-xs font-medium transition-colors">
             {menu.trigger}
           </MenubarTrigger>
           <MenubarContent className="min-w-56 rounded-lg border border-border p-1">

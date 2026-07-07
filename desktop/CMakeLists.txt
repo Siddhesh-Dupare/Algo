@@ -4,6 +4,7 @@ project (AlgoLens CXX C)
 # Set the global C++ Standard
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Windows-specific settings
 if (MSVC)
@@ -11,9 +12,6 @@ if (MSVC)
 
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
-
-# Get the glad from external folder
-set(GLAD_DIR "${CMAKE_SOURCE_DIR}/external/glad")
 
 include (FetchContent)
 
@@ -26,11 +24,23 @@ set(SDL_STATIC ON CACHE BOOL "Build static SDL library" FORCE)
 set(SDL_TEST ON CACHE BOOL "Build SDL test programs" FORCE)
 FetchContent_MakeAvailable(SDL3)
 
-# glad (OpenGL 3.3 loader)
-add_library(glad STATIC "${GLAD_DIR}/src/glad.c")
-target_include_directories(glad PUBLIC
-  "${GLAD_DIR}/include"
-)
+# asmjit: populate the source only (do NOT add_subdirectory it ourselves) -
+# Blend2D's own CMakeLists adds it as a subdirectory via ASMJIT_DIR, so
+# calling FetchContent_MakeAvailable(asmjit) here would create a duplicate target.
+FetchContent_Declare(asmjit
+  GIT_REPOSITORY https://github.com/asmjit/asmjit.git
+  GIT_TAG master)
+FetchContent_GetProperties(asmjit)
+if(NOT asmjit_POPULATED)
+  FetchContent_Populate(asmjit)
+endif()
+set(ASMJIT_DIR ${asmjit_SOURCE_DIR} CACHE PATH "" FORCE)
+
+# Fetching Blend2D latest version from the repository
+FetchContent_Declare(blend2d
+  GIT_REPOSITORY https://github.com/blend2d/blend2d.git
+  GIT_TAG master)
+FetchContent_MakeAvailable(blend2d)
 
 add_executable(AlgoLens
   source/app.cpp
@@ -39,12 +49,15 @@ add_executable(AlgoLens
 
 target_link_libraries(AlgoLens PRIVATE
   SDL3::SDL3
-  opengl32
-  glad
+  blend2d::blend2d
 )
 
 add_custom_command(TARGET AlgoLens POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
   "$<TARGET_FILE:SDL3::SDL3>" "$<TARGET_FILE_DIR:AlgoLens>"
-  COMMENT "Copying SDL3.dll...."
-)
+  COMMENT "Copying SDL3.dll....")
+
+add_custom_command(TARGET AlgoLens POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different
+  "$<TARGET_FILE:blend2d::blend2d>" "$<TARGET_FILE_DIR:AlgoLens>"
+  COMMENT "Copying blend2d.dll....")

@@ -13,7 +13,7 @@ class app {
 
     private:
         SDL_Window* window;
-        SDL_GLContext glContext;
+        SDL_Renderer* renderer;
 
         bool running;
         int WIDTH;
