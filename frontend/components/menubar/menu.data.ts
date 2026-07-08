@@ -126,18 +126,21 @@ export const menuConfig: MenuConfig[] = [
         type: "item",
         label: "Cut",
         shortcut: "Ctrl+X",
+        action: () => useEditorStore.getState().cut(),
       },
       {
         id: "copy",
         type: "item",
         label: "Copy",
         shortcut: "Ctrl+C",
+        action: () => useEditorStore.getState().copy(),
       },
       {
         id: "paste",
         type: "item",
         label: "Paste",
         shortcut: "Ctrl+V",
+        action: () => useEditorStore.getState().paste(),
       },
       { type: "separator" },
       {
