@@ -3,6 +3,7 @@ import { useThemeStore } from "@/store/theme.store";
 import { useFolderStore } from "@/store/folder.store";
 import { useUiStore } from "@/store/ui.store";
 import { useCommandStore } from "@/store/command.store";
+import { useEditorStore } from "@/store/editor.store";
 
 export type MenubarItemConfig = {
   id?: string;
@@ -110,12 +111,14 @@ export const menuConfig: MenuConfig[] = [
         type: "item",
         label: "Undo",
         shortcut: "Ctrl+Z",
+        action: () => useEditorStore.getState().undo(),
       },
       {
         id: "redo",
         type: "item",
         label: "Redo",
         shortcut: "Ctrl+Y",
+        action: () => useEditorStore.getState().redo(),
       },
       { type: "separator" },
       {
