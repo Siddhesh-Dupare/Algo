@@ -1,18 +1,23 @@
 #include "app.h"
 
-app::app() : window{nullptr}, renderer{nullptr}, running{false}, WIDTH{900}, HEIGHT{700} {}
+app::app() : window{nullptr}, renderer{nullptr}, texture{nullptr}, running{false}, WIDTH{900}, HEIGHT{700} {}
 
 app::~app() {
     shutdown();
 }
 
 void app::shutdown() {
+    if (renderer)
+        SDL_DestroyRenderer(renderer);
+    if (texture)
+        SDL_DestroyTexture(texture);
     if (window)
         SDL_DestroyWindow(window);
     SDL_Quit();
 }
 
 bool app::init() {
+    // NOTE: See if the initialization succeeds
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("SDL_INIT Failed: %s", SDL_GetError());
         return false;
@@ -32,6 +37,14 @@ bool app::init() {
         return false;
     }
 
+    image.create(WIDTH, HEIGHT, BL_FORMAT_PRGB32);
+    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32, SDL_TEXTUREACCESS_STREAMING, WIDTH, HEIGHT);
+    if (!texture) {
+        SDL_Log("Texture creation failed: %s", SDL_GetError());
+        return false;
+    }
+
+    // NOTE: If everything succeeds, set running to true
     running = true;
     return true;
 }
@@ -40,8 +53,22 @@ void app::run() {
     while (running) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
+            // NOTE: Handle quit event for the window
             if (event.type == SDL_EVENT_QUIT)
                 running = false;
         }
+
+        BLContext context(image);
+        context.clear_all();
+        context.fill_rect(BLRect(50, 50, 200, 150), BLRgba32(0xFF00A0FF));
+        context.end();
+
+        BLImageData data;
+        image.get_data(&data);
+        SDL_UpdateTexture(texture, nullptr, data.pixel_data, (int)data.stride);
+
+        SDL_RenderClear(renderer);
+        SDL_RenderTexture(renderer, texture, nullptr, nullptr);
+        SDL_RenderPresent(renderer);
     }
 }

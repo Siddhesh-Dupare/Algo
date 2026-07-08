@@ -1,0 +1,12 @@
+{
+  "lsp": {
+    "clangd": {
+      "binary": {
+        "arguments": [
+          "--query-driver=D:/Apps/MSYS2/ucrt64/bin/*.exe",
+          "--compile-commands-dir=D:/Projects/Algo/desktop/build"
+        ]
+      }
+    }
+  }
+}
