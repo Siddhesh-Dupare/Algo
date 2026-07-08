@@ -18,7 +18,7 @@ bool app::init() {
         return false;
     }
 
-    // SDL Window
+    // NOTE: SDL Window
     window = SDL_CreateWindow("AlgoLens", WIDTH, HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     if (!window) {
         SDL_Log("Window creation failed: %s", SDL_GetError());

@@ -28,8 +28,8 @@ FetchContent_MakeAvailable(SDL3)
 # Blend2D's own CMakeLists adds it as a subdirectory via ASMJIT_DIR, so
 # calling FetchContent_MakeAvailable(asmjit) here would create a duplicate target.
 FetchContent_Declare(asmjit
-  GIT_REPOSITORY https://github.com/asmjit/asmjit.git
-  GIT_TAG master)
+  URL https://github.com/asmjit/asmjit/archive/refs/heads/master.tar.gz
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
 FetchContent_GetProperties(asmjit)
 if(NOT asmjit_POPULATED)
   FetchContent_Populate(asmjit)
@@ -38,8 +38,8 @@ set(ASMJIT_DIR ${asmjit_SOURCE_DIR} CACHE PATH "" FORCE)
 
 # Fetching Blend2D latest version from the repository
 FetchContent_Declare(blend2d
-  GIT_REPOSITORY https://github.com/blend2d/blend2d.git
-  GIT_TAG master)
+  URL https://github.com/blend2d/blend2d/archive/refs/heads/master.tar.gz
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
 FetchContent_MakeAvailable(blend2d)
 
 add_executable(AlgoLens
