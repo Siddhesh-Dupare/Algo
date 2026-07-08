@@ -5,6 +5,7 @@ project (AlgoLens CXX C)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+enable_testing()
 
 # Windows-specific settings
 if (MSVC)
@@ -42,10 +43,31 @@ FetchContent_Declare(blend2d
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
 FetchContent_MakeAvailable(blend2d)
 
+# GoogleTest latest version
+FetchContent_Declare(googletest
+  URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+# NOTE: GoogleTest
+add_executable(app_test
+  tests/app_test.cpp
+  source/app.cpp)
+
 add_executable(AlgoLens
   source/app.cpp
   main.cpp
 )
+
+target_link_libraries(app_test PRIVATE
+  SDL3::SDL3
+  blend2d::blend2d
+  GTest::gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(app_test)
 
 target_link_libraries(AlgoLens PRIVATE
   SDL3::SDL3

@@ -1,6 +1,6 @@
 #include "app.h"
 
-app::app() : window{nullptr}, running{false}, WIDTH{900}, HEIGHT{700} {}
+app::app() : window{nullptr}, renderer{nullptr}, running{false}, WIDTH{900}, HEIGHT{700} {}
 
 app::~app() {
     shutdown();
@@ -22,6 +22,13 @@ bool app::init() {
     window = SDL_CreateWindow("AlgoLens", WIDTH, HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     if (!window) {
         SDL_Log("Window creation failed: %s", SDL_GetError());
+        return false;
+    }
+
+    // NOTE: SDL Renderer
+    renderer = SDL_CreateRenderer(window, nullptr);
+    if (!renderer) {
+        SDL_Log("Renderer creation failed: %s", SDL_GetError());
         return false;
     }
 
