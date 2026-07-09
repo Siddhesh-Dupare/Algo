@@ -5,6 +5,7 @@ export interface ExecutionData {
   trigger: string;
   status: string;
   icon: LucideIcon;
+  action?: () => void;
 }
 
 export const executionData: ExecutionData[] = [
