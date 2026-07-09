@@ -6,6 +6,7 @@ import NoFile from "./NoFile";
 import { useFileStore } from "@/store/file.store";
 import { useThemeStore } from "@/store/theme.store";
 import { useEditorStore } from "@/store/editor.store";
+import { getLanguageInfo } from "@/lib/language";
 
 export default function MonacoEditor() {
   const file = useFileStore((s) =>
@@ -34,7 +35,7 @@ export default function MonacoEditor() {
             key={file.id}
             height="100%"
             theme={theme === "dark" ? "vs-dark" : "light"}
-            language="python"
+            language={getLanguageInfo(file.name).id}
             value={file.content}
             onChange={handleChange}
             onMount={handleMount}

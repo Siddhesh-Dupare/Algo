@@ -10,7 +10,7 @@ export default function Tabs() {
   const closeFile = useFileStore((s) => s.closeFile);
 
   return (
-    <div className="flex h-7 items-center border border-border bg-muted">
+    <div className="flex flex-1 h-7 items-center border border-border bg-muted">
       {files.map((file) => {
         const isDirty = file.content !== file.savedContent;
         return (

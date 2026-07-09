@@ -3,6 +3,7 @@ import MonacoEditor from "@/components/editor/Monaco";
 import ThemeCommand from "@/components/command/ThemeCommand";
 import Sidebar from "@/components/explorer/Sidebar";
 import CommandPalette from "@/components/command/CommandPalette";
+import StatusBar from "@/components/status-bar/StatusBar";
 
 import {
   ResizableHandle,
@@ -27,6 +28,7 @@ export default function Home() {
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>
+      <StatusBar />
     </div>
   );
 }
