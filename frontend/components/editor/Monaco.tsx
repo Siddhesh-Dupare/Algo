@@ -1,7 +1,7 @@
 "use client";
 
 import Editor, { OnChange, OnMount } from "@monaco-editor/react";
-import Tabs from "./Tabs";
+import Tab from "../tabs/Tab";
 import NoFile from "./NoFile";
 import { useFileStore } from "@/store/file.store";
 import { useThemeStore } from "@/store/theme.store";
@@ -29,7 +29,7 @@ export default function MonacoEditor() {
     <div className="flex h-full flex-col">
       {file ? (
         <div className="min-h-0 flex-1 overflow-hidden">
-          <Tabs />
+          <Tab />
           <Editor
             key={file.id}
             height="100%"
