@@ -23,6 +23,7 @@ export const rightToggleData: ToggleData[] = [
   {
     id: "terminal-panel",
     label: "Terminal Panel",
-    icon: SquareTerminal ,
+    icon: SquareTerminal,
+    action: () => useUiStore.getState().toggleTerminal(),
   }
 ]

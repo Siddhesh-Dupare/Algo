@@ -225,6 +225,7 @@ export const menuConfig: MenuConfig[] = [
         id: "terminal-panel",
         type: "item",
         label: "Terminal Panel",
+        action: () => useUiStore.getState().toggleTerminal(),
       },
       {
         id: "visualizer-panel",

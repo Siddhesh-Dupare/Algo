@@ -26,12 +26,18 @@ export function LeftToggleButtons() {
 }
 
 export function RightToggleButtons() {
+  const terminalOpen = useUiStore((s) => s.terminalOpen);
+  const pressedById: Record<string, boolean> = {
+    "terminal-panel": terminalOpen,
+  };
+
   return (<div>
     {rightToggleData.map((toggle, index) => (
       <Toggle
         size="sm"
         key={index}
         aria-label={toggle.label}
+        pressed={pressedById[toggle.id] ?? false}
         onPressedChange={() => toggle.action?.()}
       >
         <toggle.icon size={12} />
