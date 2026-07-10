@@ -50,6 +50,26 @@ FetchContent_Declare(googletest
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+# nlohmann/json - single header, used to parse trace-step messages from the backend
+FetchContent_Declare(json
+  URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+FetchContent_MakeAvailable(json)
+
+# IXWebSocket - lightweight WebSocket client used to receive debug trace data
+# from the backend. TLS/zlib disabled: we only ever connect to ws://localhost.
+# Fetched as a tarball (not GIT_REPOSITORY) to match the rest of this file's
+# style and avoid CMake's git-clone FetchContent path, which was unreliable
+# on this machine (transient "Permission denied" on .git/logs/HEAD, likely
+# antivirus scanning mid-clone) even though a plain `git clone` worked fine.
+set(USE_TLS OFF CACHE BOOL "" FORCE)
+set(USE_ZLIB OFF CACHE BOOL "" FORCE)
+set(IXWEBSOCKET_INSTALL OFF CACHE BOOL "" FORCE)
+FetchContent_Declare(ixwebsocket
+  URL https://github.com/machinezone/IXWebSocket/archive/refs/tags/v11.4.6.tar.gz
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+FetchContent_MakeAvailable(ixwebsocket)
+
 # NOTE: GoogleTest
 add_executable(app_test
   tests/app_test.cpp
@@ -72,6 +92,8 @@ gtest_discover_tests(app_test)
 target_link_libraries(AlgoLens PRIVATE
   SDL3::SDL3
   blend2d::blend2d
+  nlohmann_json::nlohmann_json
+  ixwebsocket
 )
 
 add_custom_command(TARGET AlgoLens POST_BUILD

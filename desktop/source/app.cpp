@@ -7,6 +7,9 @@ app::~app() {
 }
 
 void app::shutdown() {
+    wsClient.stop();
+    ix::uninitNetSystem();
+
     if (renderer)
         SDL_DestroyRenderer(renderer);
     if (texture)
@@ -44,9 +47,55 @@ bool app::init() {
         return false;
     }
 
+    connectDebugSocket();
+
     // NOTE: If everything succeeds, set running to true
     running = true;
     return true;
+}
+
+void app::connectDebugSocket() {
+    ix::initNetSystem();
+    wsClient.setUrl("ws://localhost:3001");
+    wsClient.setOnMessageCallback([this](const ix::WebSocketMessagePtr& msg) {
+        if (msg->type == ix::WebSocketMessageType::Open) {
+            nlohmann::json reg = {{"type", "register"}, {"role", "desktop"}};
+            wsClient.send(reg.dump());
+        } else if (msg->type == ix::WebSocketMessageType::Message) {
+            try {
+                auto parsed = nlohmann::json::parse(msg->str);
+                std::lock_guard<std::mutex> lock(traceMutex);
+                pendingTraceSteps.push_back(parsed);
+            } catch (...) {
+                // malformed message from backend — ignore
+            }
+        }
+    });
+    wsClient.start();
+}
+
+void app::drainTraceSteps() {
+    std::vector<nlohmann::json> steps;
+    {
+        std::lock_guard<std::mutex> lock(traceMutex);
+        steps.swap(pendingTraceSteps);
+    }
+    for (const auto& step : steps)
+        handleTraceStep(step);
+}
+
+void app::handleTraceStep(const nlohmann::json& message) {
+    std::string type = message.value("type", "");
+    if (type == "trace-step") {
+        auto s = message.value("step", nlohmann::json::object());
+        int line = s.value("line", -1);
+        std::string event = s.value("event", "");
+        SDL_Log("[trace-step] line=%d event=%s", line, event.c_str());
+    } else if (type == "trace-complete") {
+        SDL_Log("[trace] complete");
+    } else if (type == "trace-error") {
+        SDL_Log("[trace] error: %s", message.value("message", "").c_str());
+    }
 }
 
 void app::run() {
@@ -57,6 +106,8 @@ void app::run() {
             if (event.type == SDL_EVENT_QUIT)
                 running = false;
         }
+
+        drainTraceSteps();
 
         BLContext context(image);
         context.clear_all();

@@ -1,5 +1,6 @@
 import { type LucideIcon, Play, Bug } from "lucide-react";
 import { runActiveFilePython } from "@/lib/runPython";
+import { debugActiveFilePython } from "@/lib/debugPython";
 
 export interface ExecutionData {
   id: string;
@@ -20,6 +21,7 @@ export const executionData: ExecutionData[] = [
     id: "debug",
     trigger: "Debug",
     status: "Not Running",
-    icon: Bug
+    icon: Bug,
+    action: () => debugActiveFilePython(),
   }
 ]

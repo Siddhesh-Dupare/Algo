@@ -7,14 +7,16 @@ import path from "path";
 import { randomUUID } from "crypto";
 import { resolveShellPath, type ShellType } from "./utils/shellResolver.js";
 import { getPythonPath } from "./utils/pathResolver.js";
+import { registerDesktopSocket, handleDebugRequest } from "./debugSession.js";
 
 interface ClientMessage {
-  type: "start" | "input" | "resize" | "run";
+  type: "start" | "input" | "resize" | "run" | "register" | "debug";
   shell?: ShellType;
   data?: string;
   cols?: number;
   rows?: number;
   code?: string;
+  role?: "desktop";
 }
 
 export function handleConnection(ws: WebSocket) {
@@ -97,6 +99,12 @@ export function handleConnection(ws: WebSocket) {
         break;
       case "run":
         if (msg.code) void runPython(msg.code);
+        break;
+      case "register":
+        if (msg.role === "desktop") registerDesktopSocket(ws);
+        break;
+      case "debug":
+        if (msg.code) void handleDebugRequest(ws, msg.code);
         break;
     }
   });
