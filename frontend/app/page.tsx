@@ -6,6 +6,7 @@ import ThemeCommand from "@/components/command/ThemeCommand";
 import Sidebar from "@/components/explorer/Sidebar";
 import CommandPalette from "@/components/command/CommandPalette";
 import StatusBar from "@/components/status-bar/StatusBar";
+import TerminalPanel from "@/components/terminal/TerminalPanel";
 import { useUiStore } from "@/store/ui.store";
 
 import {
@@ -16,6 +17,7 @@ import {
 
 export default function Home() {
   const sidebarOpen = useUiStore((s) => s.sidebarOpen);
+  const terminalOpen = useUiStore((s) => s.terminalOpen);
 
   return (
     <div className="flex h-screen flex-col">
@@ -33,7 +35,19 @@ export default function Home() {
             </>
           )}
           <ResizablePanel minSize="30">
-            <MonacoEditor />
+            <ResizablePanelGroup orientation="vertical">
+              <ResizablePanel defaultSize={terminalOpen ? "70" : "100"} minSize="20">
+                <MonacoEditor />
+              </ResizablePanel>
+              {terminalOpen && (
+                <>
+                  <ResizableHandle />
+                  <ResizablePanel defaultSize="30" minSize="10">
+                    <TerminalPanel />
+                  </ResizablePanel>
+                </>
+              )}
+            </ResizablePanelGroup>
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>
