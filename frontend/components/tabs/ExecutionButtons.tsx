@@ -9,7 +9,8 @@ export default function ExecutionButtons() {
       <Button key={index} aria-label={exe.trigger}
         className="cursor-pointer"
         size="icon-sm"
-        variant="ghost">
+        variant="ghost"
+        onClick={exe.action}>
         <exe.icon size={15} />
       </Button>
     ))}

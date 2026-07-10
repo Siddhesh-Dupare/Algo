@@ -13,12 +13,21 @@ type ServerMessage =
   | { type: "exit"; code: number }
   | { type: "error"; message: string };
 
+function flushPendingRun(ws: WebSocket) {
+  const pending = useTerminalStore.getState().runRequest;
+  if (pending && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ type: "run", code: pending }));
+    useTerminalStore.getState().clearRunRequest();
+  }
+}
+
 export default function TerminalPanel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const shell = useTerminalStore((s) => s.shell);
+  const runRequest = useTerminalStore((s) => s.runRequest);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -49,6 +58,7 @@ export default function TerminalPanel() {
           rows: term.rows,
         }),
       );
+      flushPendingRun(ws);
     };
 
     ws.onmessage = (event) => {
@@ -98,6 +108,12 @@ export default function TerminalPanel() {
     term.clear();
     ws.send(JSON.stringify({ type: "start", shell, cols: term.cols, rows: term.rows }));
   }, [shell]);
+
+  useEffect(() => {
+    const ws = wsRef.current;
+    if (!ws || !runRequest) return;
+    flushPendingRun(ws);
+  }, [runRequest]);
 
   return (
     <div className="flex h-full flex-col border-t border-border bg-background">
