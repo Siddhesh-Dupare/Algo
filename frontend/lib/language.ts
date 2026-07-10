@@ -5,7 +5,7 @@ export interface LanguageInfo {
   label: string;
 }
 
-const PLAINTEXT: LanguageInfo = { id: "unknown", label: "Unknown" };
+const PLAINTEXT: LanguageInfo = { id: "plain-text", label: "Plain Text" };
 
 const EXTENSION_MAP: Record<string, LanguageInfo> = {
   py: { id: "python", label: "Python" },
