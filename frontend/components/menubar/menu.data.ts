@@ -5,6 +5,7 @@ import { useUiStore } from "@/store/ui.store";
 import { useCommandStore } from "@/store/command.store";
 import { useEditorStore } from "@/store/editor.store";
 import { runActiveFilePython } from "@/lib/runPython";
+import { debugActiveFilePython } from "@/lib/debugPython";
 
 export type MenubarItemConfig = {
   id?: string;
@@ -251,6 +252,7 @@ export const menuConfig: MenuConfig[] = [
         type: "item",
         label: "Debug Program",
         shortcut: "F9",
+        action: () => debugActiveFilePython(),
       },
     ],
   },

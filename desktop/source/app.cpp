@@ -7,6 +7,7 @@ app::~app() {
 }
 
 void app::shutdown() {
+
     if (renderer)
         SDL_DestroyRenderer(renderer);
     if (texture)
@@ -44,6 +45,11 @@ bool app::init() {
         return false;
     }
 
+    if (!socket.webSocketInit()) {
+        SDL_Log("Failed to load websocket");
+        return false;
+    }
+
     // NOTE: If everything succeeds, set running to true
     running = true;
     return true;
@@ -57,6 +63,8 @@ void app::run() {
             if (event.type == SDL_EVENT_QUIT)
                 running = false;
         }
+
+        socket.drainTraceSteps();
 
         BLContext context(image);
         context.clear_all();

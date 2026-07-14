@@ -7,6 +7,7 @@ import Sidebar from "@/components/explorer/Sidebar";
 import CommandPalette from "@/components/command/CommandPalette";
 import StatusBar from "@/components/status-bar/StatusBar";
 import TerminalPanel from "@/components/terminal/TerminalPanel";
+import UnsavedChangesDialog from "@/components/dialogs/UnsavedChangesDialog";
 import { useUiStore } from "@/store/ui.store";
 
 import {
@@ -23,6 +24,7 @@ export default function Home() {
     <div className="flex h-screen flex-col">
       <ThemeCommand />
       <CommandPalette />
+      <UnsavedChangesDialog />
       <MenuBar />
       <div className="flex min-h-0 flex-1">
         <ResizablePanelGroup orientation="horizontal">

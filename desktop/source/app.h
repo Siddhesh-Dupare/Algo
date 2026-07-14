@@ -2,6 +2,14 @@
 
 #include <SDL3/SDL.h>
 #include <blend2d/blend2d.h>
+#include <ixwebsocket/IXNetSystem.h>
+#include <ixwebsocket/IXWebSocket.h>
+#include <mutex>
+#include <deque>
+#include <nlohmann/json.hpp>
+#include <string>
+
+#include "connection/Socket.h"
 
 class app {
     public:
@@ -21,4 +29,8 @@ class app {
         bool running;
         int WIDTH;
         int HEIGHT;
+
+        std::vector<nlohmann::json> pendingTraceSteps;
+
+        Socket socket;
 };

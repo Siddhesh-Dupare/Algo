@@ -25,9 +25,6 @@ set(SDL_STATIC ON CACHE BOOL "Build static SDL library" FORCE)
 set(SDL_TEST ON CACHE BOOL "Build SDL test programs" FORCE)
 FetchContent_MakeAvailable(SDL3)
 
-# asmjit: populate the source only (do NOT add_subdirectory it ourselves) -
-# Blend2D's own CMakeLists adds it as a subdirectory via ASMJIT_DIR, so
-# calling FetchContent_MakeAvailable(asmjit) here would create a duplicate target.
 FetchContent_Declare(asmjit
   URL https://github.com/asmjit/asmjit/archive/refs/heads/master.tar.gz
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
@@ -50,13 +47,33 @@ FetchContent_Declare(googletest
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+# nlohmann/json
+FetchContent_Declare(json
+  URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
+FetchContent_MakeAvailable(json)
+
+# ixwebsocket
+set(USE_TLS OFF CACHE BOOL "" FORCE)
+set(USE_ZLIB OFF CACHE BOOL "" FORCE)
+set(IXWEBSOCKET_INSTALL OFF CACHE BOOL "" FORCE)
+FetchContent_Declare(ixwebsocket
+  URL https://github.com/machinezone/IXWebSocket/archive/refs/tags/v11.4.6.tar.gz
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+)
+FetchContent_MakeAvailable(ixwebsocket)
+
 # NOTE: GoogleTest
 add_executable(app_test
   tests/app_test.cpp
-  source/app.cpp)
+  tests/test_socket.cpp
+  source/app.cpp
+  source/connection/Socket.cpp
+)
 
 add_executable(AlgoLens
   source/app.cpp
+  source/connection/Socket.cpp
   main.cpp
 )
 
@@ -64,6 +81,8 @@ target_link_libraries(app_test PRIVATE
   SDL3::SDL3
   blend2d::blend2d
   GTest::gtest_main
+  nlohmann_json::nlohmann_json
+  ixwebsocket
 )
 
 include(GoogleTest)
@@ -72,6 +91,8 @@ gtest_discover_tests(app_test)
 target_link_libraries(AlgoLens PRIVATE
   SDL3::SDL3
   blend2d::blend2d
+  nlohmann_json::nlohmann_json
+  ixwebsocket
 )
 
 add_custom_command(TARGET AlgoLens POST_BUILD
