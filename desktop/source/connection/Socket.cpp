@@ -43,15 +43,11 @@ bool Socket::webSocketInit() {
     return true;
 }
 
-void Socket::drainTraceSteps() {
+std::vector<nlohmann::json> Socket::drainTraceSteps() {
     std::vector<nlohmann::json> steps;
-    {
-        std::lock_guard<std::mutex> lock(traceMutex);
-        steps.swap(traceSteps);
-    }
-    for (const auto& step : steps) {
-        handleTraceSteps(step);
-    }
+    std::lock_guard<std::mutex> lock(traceMutex);
+    steps.swap(traceSteps);
+    return steps;
 }
 
 void Socket::handleTraceSteps(const nlohmann::json& message) {

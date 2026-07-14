@@ -13,7 +13,7 @@ class Socket {
         ~Socket();
 
         bool webSocketInit();
-        void drainTraceSteps();
+        std::vector<nlohmann::json> drainTraceSteps();
         void handleTraceSteps(const nlohmann::json& message);
     private:
         std::string webSocketUrl;

@@ -7,7 +7,6 @@ app::~app() {
 }
 
 void app::shutdown() {
-
     if (renderer)
         SDL_DestroyRenderer(renderer);
     if (texture)
@@ -66,10 +65,10 @@ void app::run() {
 
         socket.drainTraceSteps();
 
-        BLContext context(image);
-        context.clear_all();
-        context.fill_rect(BLRect(50, 50, 200, 150), BLRgba32(0xFF00A0FF));
-        context.end();
+        // BLContext context(image);
+        // context.clear_all();
+        // context.fill_rect(BLRect(50, 50, 200, 150), BLRgba32(0xFF00A0FF));
+        // context.end();
 
         BLImageData data;
         image.get_data(&data);
