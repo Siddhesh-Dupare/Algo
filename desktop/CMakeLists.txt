@@ -67,13 +67,18 @@ FetchContent_MakeAvailable(ixwebsocket)
 add_executable(app_test
   tests/app_test.cpp
   tests/test_socket.cpp
+  tests/test_font.cpp
   source/app.cpp
   source/connection/Socket.cpp
+  source/components/Text.cpp
+  source/helper/GetPath.cpp
 )
 
 add_executable(AlgoLens
   source/app.cpp
   source/connection/Socket.cpp
+  source/components/Text.cpp
+  source/helper/GetPath.cpp
   main.cpp
 )
 
@@ -104,3 +109,9 @@ add_custom_command(TARGET AlgoLens POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
   "$<TARGET_FILE:blend2d::blend2d>" "$<TARGET_FILE_DIR:AlgoLens>"
   COMMENT "Copying blend2d.dll....")
+
+add_custom_command(TARGET AlgoLens POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+  "${CMAKE_SOURCE_DIR}/assets" "$<TARGET_FILE_DIR:AlgoLens>/assets"
+  COMMENT "Copying assets....."
+)

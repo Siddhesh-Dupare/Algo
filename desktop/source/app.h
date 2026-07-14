@@ -7,6 +7,7 @@
 #include <nlohmann/json.hpp>
 
 #include "connection/Socket.h"
+#include "components/Text.h"
 
 class app {
     public:
@@ -28,4 +29,5 @@ class app {
         int HEIGHT;
 
         Socket socket;
+        Text text;
 };

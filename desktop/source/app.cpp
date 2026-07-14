@@ -1,6 +1,10 @@
 #include "app.h"
+#include "blend2d/core/api.h"
+#include "blend2d/core/context.h"
 
-app::app() : window{nullptr}, renderer{nullptr}, texture{nullptr}, running{false}, WIDTH{900}, HEIGHT{700} {}
+app::app() :
+window{nullptr}, renderer{nullptr}, texture{nullptr},
+running{false}, WIDTH{900}, HEIGHT{700} {}
 
 app::~app() {
     shutdown();
@@ -43,9 +47,17 @@ bool app::init() {
         SDL_Log("Texture creation failed: %s", SDL_GetError());
         return false;
     }
+    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND_PREMULTIPLIED);
 
+    // NOTE: loading the web socket
     if (!socket.webSocketInit()) {
         SDL_Log("Failed to load websocket");
+        return false;
+    }
+
+    // NOTE: initialize the text font
+    if (!text.initFont()) {
+        SDL_Log("Failed to load font");
         return false;
     }
 
@@ -65,10 +77,12 @@ void app::run() {
 
         socket.drainTraceSteps();
 
-        // BLContext context(image);
-        // context.clear_all();
-        // context.fill_rect(BLRect(50, 50, 200, 150), BLRgba32(0xFF00A0FF));
-        // context.end();
+        BLContext context(image);
+        context.clear_all();
+
+        text.draw(context, BLPoint(60, 80), "Siddhesh", 36.0f);
+        context.end();
+        image.write_to_file("sample_image.png");
 
         BLImageData data;
         image.get_data(&data);
