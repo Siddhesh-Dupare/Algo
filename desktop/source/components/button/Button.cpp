@@ -12,6 +12,12 @@ void Button::setRectangle(double x, double y, double width, double height) {
     rect.h = height;
 }
 
-void Button::draw(BLContext& context) {
+void Button::setLabel(const char* label) {
+    this->label = label;
+}
+
+void Button::draw(BLContext& context, Text& text) {
     context.fill_rect(rect, BLRgba32(0xFF505050));
+    text.setLabel(label.c_str());
+    text.draw(context, BLPoint(rect.x + 8, rect.y + rect.h - 8));
 }

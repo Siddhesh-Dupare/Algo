@@ -77,17 +77,12 @@ void app::run() {
 
         socket.drainTraceSteps();
 
-        // BLContext context(image);
-        // context.clear_all();
-
-        // text.draw(context, BLPoint(60, 80), "Siddhesh", 36.0f);
-        // context.end();
-        // image.write_to_file("sample_image.png");
-
         BLContext context(image);
         context.clear_all();
+
         button.setRectangle(60.0f, 80.0f, 80.0f, 40.0f);
-        button.draw(context);
+        button.setLabel("Buttons for me");
+        button.draw(context, text);
 
         BLImageData data;
         image.get_data(&data);

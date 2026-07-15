@@ -10,7 +10,19 @@ class Text {
         ~Text();
 
         bool initFont();
-        void draw(BLContext& context, const BLPoint& origin, const char* str, float fontSize);
+        void draw(BLContext& context, const BLPoint& origin);
+
+        void setFontFile(const std::string& fontPath);
+        std::string getFontPath() const;
+
+        void setFontSize(float size);
+        float getFontSize() const;
+
+        void setColor(const BLRgba32 color);
+        BLRgba32 getColor() const;
+
+        void setLabel(const char* label);
+        std::string getLabel() const;
 
     private:
         BLFontFace fontFace;
@@ -18,4 +30,7 @@ class Text {
         std::string fontPath;
         BLResult result;
         float fontSize;
+        float loadedFontSize;
+        BLRgba32 color;
+        std::string label;
 };
