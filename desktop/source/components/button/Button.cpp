@@ -1,7 +1,7 @@
 #include "Button.h"
 
 Button::Button()
-    : rect(0, 0, 0, 0), isVisible(false) {}
+    : rect(0, 0, 0, 0), label("Button") {}
 
 Button::~Button() {}
 

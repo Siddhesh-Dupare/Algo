@@ -15,6 +15,5 @@ class Button {
 
     private:
         BLRect rect;
-        bool isVisible;
         std::string label;
 };
