@@ -71,14 +71,16 @@ add_executable(app_test
   source/app.cpp
   source/connection/Socket.cpp
   source/components/text/Text.cpp
-  source/helper/GetPath.cpp
+  source/components/button/Button.cpp
+  source/helper/Utils.cpp
 )
 
 add_executable(AlgoLens
   source/app.cpp
   source/connection/Socket.cpp
   source/components/text/Text.cpp
-  source/helper/GetPath.cpp
+  source/components/button/Button.cpp
+  source/helper/Utils.cpp
   main.cpp
 )
 

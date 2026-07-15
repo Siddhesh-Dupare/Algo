@@ -4,7 +4,7 @@
 
 app::app() :
 window{nullptr}, renderer{nullptr}, texture{nullptr},
-running{false}, WIDTH{900}, HEIGHT{700} {}
+running{false} {}
 
 app::~app() {
     shutdown();
@@ -77,12 +77,17 @@ void app::run() {
 
         socket.drainTraceSteps();
 
+        // BLContext context(image);
+        // context.clear_all();
+
+        // text.draw(context, BLPoint(60, 80), "Siddhesh", 36.0f);
+        // context.end();
+        // image.write_to_file("sample_image.png");
+
         BLContext context(image);
         context.clear_all();
-
-        text.draw(context, BLPoint(60, 80), "Siddhesh", 36.0f);
-        context.end();
-        image.write_to_file("sample_image.png");
+        button.setRectangle(60.0f, 80.0f, 80.0f, 40.0f);
+        button.draw(context);
 
         BLImageData data;
         image.get_data(&data);

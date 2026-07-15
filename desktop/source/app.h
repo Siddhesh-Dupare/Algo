@@ -6,8 +6,10 @@
 #include <ixwebsocket/IXWebSocket.h>
 #include <nlohmann/json.hpp>
 
+#include "helper/Utils.h"
 #include "connection/Socket.h"
 #include "components/text/Text.h"
+#include "components/button/Button.h"
 
 class app {
     public:
@@ -25,9 +27,8 @@ class app {
         SDL_Texture* texture;
 
         bool running;
-        int WIDTH;
-        int HEIGHT;
 
         Socket socket;
         Text text;
+        Button button;
 };
