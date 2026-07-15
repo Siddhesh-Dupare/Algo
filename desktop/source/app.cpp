@@ -49,15 +49,15 @@ bool app::init() {
     }
     SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND_PREMULTIPLIED);
 
-    // NOTE: loading the web socket
-    if (!socket.webSocketInit()) {
-        SDL_Log("Failed to load websocket");
-        return false;
-    }
-
     // NOTE: initialize the text font
     if (!text.initFont()) {
         SDL_Log("Failed to load font");
+        return false;
+    }
+
+    // NOTE: loading the web socket
+    if (!socket.webSocketInit()) {
+        SDL_Log("Failed to load websocket");
         return false;
     }
 

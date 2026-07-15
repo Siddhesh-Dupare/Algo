@@ -7,7 +7,7 @@
 #include <nlohmann/json.hpp>
 
 #include "connection/Socket.h"
-#include "components/Text.h"
+#include "components/text/Text.h"
 
 class app {
     public:

@@ -1,4 +1,4 @@
-#include "../source/components/Text.h"
+#include "../source/components/text/Text.h"
 
 #include <gtest/gtest.h>
 

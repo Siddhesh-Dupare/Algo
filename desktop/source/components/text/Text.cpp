@@ -1,5 +1,5 @@
 #include "Text.h"
-#include "../helper/GetPath.h"
+#include "../../helper/GetPath.h"
 
 Text::Text()
     : fontFace(), font(), fontSize(-1.0f) {}

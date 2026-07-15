@@ -70,14 +70,14 @@ add_executable(app_test
   tests/test_font.cpp
   source/app.cpp
   source/connection/Socket.cpp
-  source/components/Text.cpp
+  source/components/text/Text.cpp
   source/helper/GetPath.cpp
 )
 
 add_executable(AlgoLens
   source/app.cpp
   source/connection/Socket.cpp
-  source/components/Text.cpp
+  source/components/text/Text.cpp
   source/helper/GetPath.cpp
   main.cpp
 )
