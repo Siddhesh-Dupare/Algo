@@ -80,9 +80,13 @@ void app::run() {
         BLContext context(image);
         context.clear_all();
 
-        button.setRectangle(60.0f, 80.0f, 80.0f, 40.0f);
-        button.setLabel("Buttons for me");
-        button.draw(context, text);
+        logButton.setRectangle(0, 0, 60, 30);
+        logButton.setLabel("Log");
+        logButton.setFontSize(16.0f);
+        logButton.setTextColor(BLRgba32(0xFF000000));
+        logButton.draw(context, text);
+
+        context.end();
 
         BLImageData data;
         image.get_data(&data);

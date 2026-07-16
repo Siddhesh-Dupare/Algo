@@ -30,5 +30,5 @@ class app {
 
         Socket socket;
         Text text;
-        Button button;
+        Button logButton;
 };

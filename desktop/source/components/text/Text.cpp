@@ -19,6 +19,18 @@ bool Text::initFont() {
     return true;
 }
 
+float Text::measureWidth(const char* str) {
+    if (fontSize != loadedFontSize) {
+        font.create_from_face(fontFace, fontSize);
+        loadedFontSize = fontSize;
+    }
+    BLGlyphBuffer glyphBuffer;
+    BLTextMetrics metrics;
+    glyphBuffer.set_utf8_text(str);
+    font.get_text_metrics(glyphBuffer, metrics);
+    return (float)metrics.advance.x;
+}
+
 void Text::draw(BLContext& context, const BLPoint& origin) {
     if (fontSize != loadedFontSize) {
         font.create_from_face(fontFace, fontSize);
@@ -26,32 +38,4 @@ void Text::draw(BLContext& context, const BLPoint& origin) {
     }
     context.set_fill_style(color);
     context.fill_utf8_text(origin, font, label.c_str());
-}
-
-void Text::setFontFile(const std::string& path) {
-    fontPath = path;
-}
-std::string Text::getFontPath() const {
-    return fontPath;
-}
-
-void Text::setFontSize(float size) {
-    fontSize = size;
-}
-float Text::getFontSize() const {
-    return fontSize;
-}
-
-void Text::setColor(const BLRgba32 color) {
-    this->color = color;
-}
-BLRgba32 Text::getColor() const {
-    return color;
-}
-
-void Text::setLabel(const char* label) {
-    this->label = label;
-}
-std::string Text::getLabel() const {
-    return label;
 }

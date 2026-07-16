@@ -2,8 +2,8 @@
 
 #include <string>
 
-const int WIDTH = 900;
-const int HEIGHT = 700;
+const int WIDTH = 1890;
+const int HEIGHT = 900;
 
 std::string getBasePath();
 
