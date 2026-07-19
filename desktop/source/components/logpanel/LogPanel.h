@@ -6,6 +6,8 @@
 #include <vector>
 #include <mutex>
 
+#include "../../helper/Utils.h"
+
 struct LogEntry {
     std::string message;
     ImVec4 color;

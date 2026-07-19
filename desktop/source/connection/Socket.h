@@ -6,6 +6,7 @@
 #include <mutex>
 #include <nlohmann/json.hpp>
 #include <vector>
+#include "../helper/Utils.h"
 
 class Socket {
     public:

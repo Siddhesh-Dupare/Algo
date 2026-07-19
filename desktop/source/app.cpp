@@ -30,36 +30,39 @@ bool app::init() {
     logPanel.installLogCapture(); // NOTE: initialize log capture
     // NOTE: See if the initialization succeeds
     if (!SDL_Init(SDL_INIT_VIDEO)) {
-        SDL_Log("SDL_INIT Failed: %s", SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL_INIT Failed: %s", SDL_GetError());
         return false;
     }
 
     // NOTE: SDL Window
     float mainScale = SDL_GetDisplayContentScale(SDL_GetPrimaryDisplay());
-    window = SDL_CreateWindow("AlgoLens", (int)(WIDTH * mainScale), (int)(HEIGHT * mainScale), SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    window =
+        SDL_CreateWindow("AlgoLens", (int)(WIDTH * mainScale), (int)(HEIGHT * mainScale),
+            SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     if (!window) {
-        SDL_Log("Window creation failed: %s", SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Window creation failed: %s", SDL_GetError());
         return false;
     }
 
     // NOTE: SDL Renderer
     renderer = SDL_CreateRenderer(window, nullptr);
     if (!renderer) {
-        SDL_Log("Renderer creation failed: %s", SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Renderer creation failed: %s", SDL_GetError());
         return false;
     }
 
     image.create(WIDTH, HEIGHT, BL_FORMAT_PRGB32);
-    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32, SDL_TEXTUREACCESS_STREAMING, WIDTH, HEIGHT);
+    texture =
+        SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32, SDL_TEXTUREACCESS_STREAMING, WIDTH, HEIGHT);
     if (!texture) {
-        SDL_Log("Texture creation failed: %s", SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,"Texture creation failed: %s", SDL_GetError());
         return false;
     }
     SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND_PREMULTIPLIED);
 
     // NOTE: loading the web socket
     if (!socket.webSocketInit()) {
-        SDL_Log("Failed to load websocket");
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to load websocket");
         return false;
     }
 
@@ -101,7 +104,9 @@ void app::run() {
         if (currentWidth != lastWidth || currentHeight != lastHeight) {
             image.create(currentWidth, currentHeight, BL_FORMAT_PRGB32);
             if (texture) SDL_DestroyTexture(texture);
-            texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32, SDL_TEXTUREACCESS_STREAMING, currentWidth, currentHeight);
+            texture =
+                SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32, SDL_TEXTUREACCESS_STREAMING,
+                    currentWidth, currentHeight);
             SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND_PREMULTIPLIED);
             lastWidth = currentWidth;
             lastHeight = currentHeight;

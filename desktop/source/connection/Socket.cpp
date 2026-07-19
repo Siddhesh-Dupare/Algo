@@ -1,4 +1,5 @@
 #include "Socket.h"
+#include "SDL3/SDL_log.h"
 #include <SDL3/SDL.h>
 #include <mutex>
 #include <nlohmann/json.hpp>
@@ -14,12 +15,12 @@ Socket::~Socket() {
 
 bool Socket::webSocketInit() {
     if (!ix::initNetSystem()) {
-        SDL_Log("Failed to initialze network system");
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to initialze network system");
         return false;
     }
 
     webSocket.setUrl(webSocketUrl);
-    SDL_Log("Waiting for connection to %s", webSocketUrl.c_str());
+    SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, "Waiting for connection to %s", webSocketUrl.c_str());
 
     // NOTE: Real data parsing of incoming message in the callback
     webSocket.setOnMessageCallback([this](const ix::WebSocketMessagePtr& msg) {
@@ -29,20 +30,20 @@ bool Socket::webSocketInit() {
                 std::lock_guard<std::mutex> lock(traceMutex);
                 traceSteps.push_back(parsed);
             } catch (const std::exception& exception) {
-                SDL_Log("Invalid JSON message: %s", exception.what());
+                SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, "Invalid JSON message: %s", exception.what());
             }
         }
         else if (msg->type == ix::WebSocketMessageType::Open) {
-            SDL_Log("Connected to %s", webSocketUrl.c_str());
+            SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "Connected to %s", webSocketUrl.c_str());
             nlohmann::json reg = {{ "type", "register"}, { "role", "desktop" }};
             webSocket.send(reg.dump());
         }
         // NOTE: Keep retrying on connection error
         else if (msg->type == ix::WebSocketMessageType::Error) {
-            SDL_Log("Connection error, retrying...");
+            SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, "Connection error, retrying...");
         }
         else if (msg->type == ix::WebSocketMessageType::Close) {
-            SDL_Log("Disconnected from %s", webSocketUrl.c_str());
+            SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION, "Disconnected from %s", webSocketUrl.c_str());
         }
     });
 

@@ -49,7 +49,8 @@ void LogPanel::addLine(const std::string& line, SDL_LogPriority priority) {
 void LogPanel::draw(int windowWidth, int windowHeight) {
     ImGui::SetNextWindowPos(ImVec2((float)(windowWidth - 70), (float)(windowHeight - 40)));
     ImGui::SetNextWindowSize(ImVec2(60, 30));
-    ImGui::Begin("Log Button", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove
+    ImGui::Begin("Log Button", nullptr,
+        ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove
         | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoBackground);
 
     if (ImGui::Button("Log", ImVec2(-1, -1))) {
@@ -61,7 +62,8 @@ void LogPanel::draw(int windowWidth, int windowHeight) {
     if (visible) {
         ImGui::SetNextWindowPos(ImVec2((float)(windowWidth - 320), (float)(windowHeight - 240)));
         ImGui::SetNextWindowSize(ImVec2(310, 200));
-        ImGui::Begin("Log Panel", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+        ImGui::Begin("Log Panel", nullptr,
+            ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
 
         std::lock_guard<std::mutex> lock(logMutex);
         for (const auto& entry : logLines) {
