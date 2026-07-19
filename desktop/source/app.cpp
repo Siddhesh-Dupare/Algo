@@ -28,6 +28,7 @@ void app::shutdown() {
 }
 
 bool app::init() {
+    logPanel.installLogCapture(); // NOTE: initialize log capture
     // NOTE: See if the initialization succeeds
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("SDL_INIT Failed: %s", SDL_GetError());
@@ -124,6 +125,7 @@ void app::run() {
         ImGui::NewFrame();
 
         // TODO: Code goes here for ImGui::Begin()/ImGui::End() widgets
+        // NOTE: Log Panel
         logPanel.draw(currentWidth, currentHeight);
 
         ImGui::Render();

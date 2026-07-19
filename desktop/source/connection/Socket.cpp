@@ -19,8 +19,7 @@ bool Socket::webSocketInit() {
     }
 
     webSocket.setUrl(webSocketUrl);
-    // TODO: Draw the connection message
-    SDL_Log("Connected to %s", webSocketUrl.c_str());
+    SDL_Log("Waiting for connection to %s", webSocketUrl.c_str());
 
     webSocket.setOnMessageCallback([this](const ix::WebSocketMessagePtr& msg) {
         if (msg->type == ix::WebSocketMessageType::Message) {
@@ -28,14 +27,20 @@ bool Socket::webSocketInit() {
                 auto parsed = nlohmann::json::parse(msg->str);
                 std::lock_guard<std::mutex> lock(traceMutex);
                 traceSteps.push_back(parsed);
-                // SDL_Log("Received in desktop: %s", parsed.dump().c_str());
             } catch (const std::exception& exception) {
                 SDL_Log("Invalid JSON message: %s", exception.what());
             }
         }
         else if (msg->type == ix::WebSocketMessageType::Open) {
+            SDL_Log("Connected to %s", webSocketUrl.c_str());
             nlohmann::json reg = {{ "type", "register"}, { "role", "desktop" }};
             webSocket.send(reg.dump());
+        }
+        else if (msg->type == ix::WebSocketMessageType::Error) {
+            SDL_Log("Connection error, retrying...");
+        }
+        else if (msg->type == ix::WebSocketMessageType::Close) {
+            SDL_Log("Disconnected from %s", webSocketUrl.c_str());
         }
     });
 
@@ -50,17 +55,17 @@ std::vector<nlohmann::json> Socket::drainTraceSteps() {
     return steps;
 }
 
-void Socket::handleTraceSteps(const nlohmann::json& message) {
-    std::string type = message.value("type", "");
-    if (type == "trace-step") {
-        auto s = message.value("step", nlohmann::json::object());
-        int line = s.value("line", -1);
-        std::string event = s.value("event", "");
-        SDL_Log("[trace-step] line=%d, event=%s", line, event.c_str());
-    }
-    else if (type == "trace-complete") {
-        SDL_Log("[trace] complete");
-    } else if (type == "trace-error") {
-        SDL_Log("[trace] error: %s", message.value("message", "").c_str());
-    }
-}
+// void Socket::handleTraceSteps(const nlohmann::json& message) {
+//     std::string type = message.value("type", "");
+//     if (type == "trace-step") {
+//         auto s = message.value("step", nlohmann::json::object());
+//         int line = s.value("line", -1);
+//         std::string event = s.value("event", "");
+//         SDL_Log("[trace-step] line=%d, event=%s", line, event.c_str());
+//     }
+//     else if (type == "trace-complete") {
+//         SDL_Log("[trace] complete");
+//     } else if (type == "trace-error") {
+//         SDL_Log("[trace] error: %s", message.value("message", "").c_str());
+//     }
+// }
