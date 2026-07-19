@@ -1,6 +1,7 @@
 #include "app.h"
 #include "blend2d/core/api.h"
 #include "blend2d/core/context.h"
+#include "blend2d/core/format.h"
 
 app::app() :
 window{nullptr}, renderer{nullptr}, texture{nullptr},
@@ -11,6 +12,12 @@ app::~app() {
 }
 
 void app::shutdown() {
+    if (ImGui::GetCurrentContext()) {
+        ImGui_ImplSDLRenderer3_Shutdown();
+        ImGui_ImplSDL3_Shutdown();
+        ImGui::DestroyContext();
+    }
+
     if (renderer)
         SDL_DestroyRenderer(renderer);
     if (texture)
@@ -28,7 +35,8 @@ bool app::init() {
     }
 
     // NOTE: SDL Window
-    window = SDL_CreateWindow("AlgoLens", WIDTH, HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    float mainScale = SDL_GetDisplayContentScale(SDL_GetPrimaryDisplay());
+    window = SDL_CreateWindow("AlgoLens", (int)(WIDTH * mainScale), (int)(HEIGHT * mainScale), SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     if (!window) {
         SDL_Log("Window creation failed: %s", SDL_GetError());
         return false;
@@ -61,39 +69,79 @@ bool app::init() {
         return false;
     }
 
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // NOTE: Enable keyboard navigation
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad; // NOTE: Enable gamepad navigation
+
+    ImGuiStyle& style = ImGui::GetStyle();
+    style.ScaleAllSizes(mainScale);
+    style.FontScaleDpi = mainScale;
+
+    ImGui_ImplSDL3_InitForSDLRenderer(window, renderer);
+    ImGui_ImplSDLRenderer3_Init(renderer);
+
     // NOTE: If everything succeeds, set running to true
     running = true;
     return true;
 }
 
 void app::run() {
+    int lastWidth = -1;
+    int lastHeight = -1;
+
     while (running) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
+            ImGui_ImplSDL3_ProcessEvent(&event);
             // NOTE: Handle quit event for the window
             if (event.type == SDL_EVENT_QUIT)
                 running = false;
         }
 
+        int currentWidth, currentHeight;
+        SDL_GetWindowSizeInPixels(window, &currentWidth, &currentHeight);
+
+        if (currentWidth != lastWidth || currentHeight != lastHeight) {
+            image.create(currentWidth, currentHeight, BL_FORMAT_PRGB32);
+            if (texture) SDL_DestroyTexture(texture);
+            texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32, SDL_TEXTUREACCESS_STREAMING, currentWidth, currentHeight);
+            SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND_PREMULTIPLIED);
+            lastWidth = currentWidth;
+            lastHeight = currentHeight;
+        }
+
         socket.drainTraceSteps();
-
-        BLContext context(image);
-        context.clear_all();
-
-        logButton.setRectangle(0, 0, 60, 30);
-        logButton.setLabel("Log");
-        logButton.setFontSize(16.0f);
-        logButton.setTextColor(BLRgba32(0xFF000000));
-        logButton.draw(context, text);
-
-        context.end();
 
         BLImageData data;
         image.get_data(&data);
         SDL_UpdateTexture(texture, nullptr, data.pixel_data, (int)data.stride);
 
+        ImGui_ImplSDLRenderer3_NewFrame();
+        ImGui_ImplSDL3_NewFrame();
+        ImGui::NewFrame();
+
+        // TODO: Code goes here for ImGui::Begin()/ImGui::End() widgets
+        ImGui::SetNextWindowPos(ImVec2((float)(currentWidth - 70), (float)(currentHeight - 40)));
+        ImGui::SetNextWindowSize(ImVec2(60, 30));
+        ImGui::Begin("LogButtonWindow", nullptr,
+            ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
+            ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar |
+            ImGuiWindowFlags_NoBackground);
+
+        if (ImGui::Button("Log", ImVec2(-1, -1))) {
+
+        }
+
+        ImGui::End();
+
+        ImGui::Render();
+
         SDL_RenderClear(renderer);
         SDL_RenderTexture(renderer, texture, nullptr, nullptr);
+        ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
         SDL_RenderPresent(renderer);
     }
 }

@@ -63,6 +63,22 @@ FetchContent_Declare(ixwebsocket
 )
 FetchContent_MakeAvailable(ixwebsocket)
 
+# Dear ImGui
+FetchContent_Declare(imgui
+  URL https://github.com/ocornut/imgui/archive/refs/tags/v1.92.8.tar.gz
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+)
+FetchContent_MakeAvailable(imgui)
+set(IMGUI_DIR ${imgui_SOURCE_DIR})
+set(IMGUI_SOURCES
+  ${IMGUI_DIR}/imgui.cpp
+  ${IMGUI_DIR}/imgui_draw.cpp
+  ${IMGUI_DIR}/imgui_tables.cpp
+  ${IMGUI_DIR}/imgui_widgets.cpp
+  ${IMGUI_DIR}/backends/imgui_impl_sdl3.cpp
+  ${IMGUI_DIR}/backends/imgui_impl_sdlrenderer3.cpp
+)
+
 # NOTE: GoogleTest
 add_executable(app_test
   tests/app_test.cpp
@@ -73,6 +89,7 @@ add_executable(app_test
   source/components/text/Text.cpp
   source/components/button/Button.cpp
   source/helper/Utils.cpp
+  ${IMGUI_SOURCES}
 )
 
 add_executable(AlgoLens
@@ -82,6 +99,7 @@ add_executable(AlgoLens
   source/components/button/Button.cpp
   source/helper/Utils.cpp
   main.cpp
+  ${IMGUI_SOURCES}
 )
 
 target_link_libraries(app_test PRIVATE
@@ -100,6 +118,16 @@ target_link_libraries(AlgoLens PRIVATE
   blend2d::blend2d
   nlohmann_json::nlohmann_json
   ixwebsocket
+)
+
+target_include_directories(app_test PRIVATE
+  ${IMGUI_DIR}
+  ${IMGUI_DIR}/backends
+)
+
+target_include_directories(AlgoLens PRIVATE
+  ${IMGUI_DIR}
+  ${IMGUI_DIR}/backends
 )
 
 add_custom_command(TARGET AlgoLens POST_BUILD

@@ -10,6 +10,9 @@
 #include "connection/Socket.h"
 #include "components/text/Text.h"
 #include "components/button/Button.h"
+#include "imgui.h"
+#include "imgui_impl_sdl3.h"
+#include "imgui_impl_sdlrenderer3.h"
 
 class app {
     public:
