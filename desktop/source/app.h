@@ -9,8 +9,6 @@
 #include "helper/Utils.h"
 #include "connection/Socket.h"
 #include "components/logpanel/LogPanel.h"
-#include "components/text/Text.h"
-#include "components/button/Button.h"
 #include "imgui.h"
 #include "imgui_impl_sdl3.h"
 #include "imgui_impl_sdlrenderer3.h"

@@ -1,6 +1,5 @@
 #include "app.h"
 #include "blend2d/core/api.h"
-#include "blend2d/core/context.h"
 #include "blend2d/core/format.h"
 
 app::app() :
@@ -57,12 +56,6 @@ bool app::init() {
         return false;
     }
     SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND_PREMULTIPLIED);
-
-    // NOTE: initialize the text font
-    // if (!text.initFont()) {
-    //     SDL_Log("Failed to load font");
-    //     return false;
-    // }
 
     // NOTE: loading the web socket
     if (!socket.webSocketInit()) {

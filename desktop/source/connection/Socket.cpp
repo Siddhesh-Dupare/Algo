@@ -21,6 +21,7 @@ bool Socket::webSocketInit() {
     webSocket.setUrl(webSocketUrl);
     SDL_Log("Waiting for connection to %s", webSocketUrl.c_str());
 
+    // NOTE: Real data parsing of incoming message in the callback
     webSocket.setOnMessageCallback([this](const ix::WebSocketMessagePtr& msg) {
         if (msg->type == ix::WebSocketMessageType::Message) {
             try {
@@ -36,6 +37,7 @@ bool Socket::webSocketInit() {
             nlohmann::json reg = {{ "type", "register"}, { "role", "desktop" }};
             webSocket.send(reg.dump());
         }
+        // NOTE: Keep retrying on connection error
         else if (msg->type == ix::WebSocketMessageType::Error) {
             SDL_Log("Connection error, retrying...");
         }
