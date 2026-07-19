@@ -124,18 +124,34 @@ void app::run() {
         ImGui::NewFrame();
 
         // TODO: Code goes here for ImGui::Begin()/ImGui::End() widgets
+        // static bool showDemo = true;
+        // if (showDemo)
+        //     ImGui::ShowDemoWindow(&showDemo);
+        //
+        static bool logPanelVisible = false;
+
         ImGui::SetNextWindowPos(ImVec2((float)(currentWidth - 70), (float)(currentHeight - 40)));
         ImGui::SetNextWindowSize(ImVec2(60, 30));
-        ImGui::Begin("LogButtonWindow", nullptr,
+        ImGui::Begin("Window", nullptr,
             ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
-            ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar |
-            ImGuiWindowFlags_NoBackground);
+                ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar |
+                ImGuiWindowFlags_NoBackground);
 
         if (ImGui::Button("Log", ImVec2(-1, -1))) {
-
+            logPanelVisible = !logPanelVisible;
         }
 
         ImGui::End();
+
+        if (logPanelVisible) {
+            ImGui::SetNextWindowPos(ImVec2((float)(currentWidth - 320), (float)(currentHeight - 240)));
+            ImGui::SetNextWindowSize(ImVec2(310, 200));
+            ImGui::Begin("LogPanel", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+
+            ImGui::Text("Log output goes here....");
+
+            ImGui::End();
+        }
 
         ImGui::Render();
 
