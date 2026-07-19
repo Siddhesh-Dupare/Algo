@@ -89,6 +89,7 @@ add_executable(app_test
   source/connection/Socket.cpp
   source/components/text/Text.cpp
   source/components/button/Button.cpp
+  source/components/logpanel/LogPanel.cpp
   source/helper/Utils.cpp
   ${IMGUI_SOURCES}
 )
@@ -98,6 +99,7 @@ add_executable(AlgoLens
   source/connection/Socket.cpp
   source/components/text/Text.cpp
   source/components/button/Button.cpp
+  source/components/logpanel/LogPanel.cpp
   source/helper/Utils.cpp
   main.cpp
   ${IMGUI_SOURCES}

@@ -8,6 +8,7 @@
 
 #include "helper/Utils.h"
 #include "connection/Socket.h"
+#include "components/logpanel/LogPanel.h"
 #include "components/text/Text.h"
 #include "components/button/Button.h"
 #include "imgui.h"
@@ -32,6 +33,5 @@ class app {
         bool running;
 
         Socket socket;
-        Text text;
-        Button logButton;
+        LogPanel logPanel;
 };

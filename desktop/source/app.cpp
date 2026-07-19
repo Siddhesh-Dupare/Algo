@@ -58,10 +58,10 @@ bool app::init() {
     SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND_PREMULTIPLIED);
 
     // NOTE: initialize the text font
-    if (!text.initFont()) {
-        SDL_Log("Failed to load font");
-        return false;
-    }
+    // if (!text.initFont()) {
+    //     SDL_Log("Failed to load font");
+    //     return false;
+    // }
 
     // NOTE: loading the web socket
     if (!socket.webSocketInit()) {
@@ -124,34 +124,7 @@ void app::run() {
         ImGui::NewFrame();
 
         // TODO: Code goes here for ImGui::Begin()/ImGui::End() widgets
-        // static bool showDemo = true;
-        // if (showDemo)
-        //     ImGui::ShowDemoWindow(&showDemo);
-        //
-        static bool logPanelVisible = false;
-
-        ImGui::SetNextWindowPos(ImVec2((float)(currentWidth - 70), (float)(currentHeight - 40)));
-        ImGui::SetNextWindowSize(ImVec2(60, 30));
-        ImGui::Begin("Window", nullptr,
-            ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
-                ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar |
-                ImGuiWindowFlags_NoBackground);
-
-        if (ImGui::Button("Log", ImVec2(-1, -1))) {
-            logPanelVisible = !logPanelVisible;
-        }
-
-        ImGui::End();
-
-        if (logPanelVisible) {
-            ImGui::SetNextWindowPos(ImVec2((float)(currentWidth - 320), (float)(currentHeight - 240)));
-            ImGui::SetNextWindowSize(ImVec2(310, 200));
-            ImGui::Begin("LogPanel", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
-
-            ImGui::Text("Log output goes here....");
-
-            ImGui::End();
-        }
+        logPanel.draw(currentWidth, currentHeight);
 
         ImGui::Render();
 
