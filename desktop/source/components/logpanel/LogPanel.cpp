@@ -46,6 +46,15 @@ void LogPanel::addLine(const std::string& line, SDL_LogPriority priority) {
     }
 }
 
+void LogPanel::addTraceLine(const std::string& line) {
+    ImVec4 traceColor = ImVec4(0.4f, 0.7f, 1.0f, 1.0f);
+    std::lock_guard<std::mutex> lock(logMutex);
+    logLines.push_back({line, traceColor});
+    if (logLines.size() > 200) {
+        logLines.erase(logLines.begin());
+    }
+}
+
 void LogPanel::draw(int windowWidth, int windowHeight) {
     ImGui::SetNextWindowPos(ImVec2((float)(windowWidth - 70), (float)(windowHeight - 40)));
     ImGui::SetNextWindowSize(ImVec2(60, 30));

@@ -32,4 +32,5 @@ class app {
 
         Socket socket;
         LogPanel logPanel;
+        std::vector<nlohmann::json> traceSteps;
 };

@@ -19,6 +19,7 @@ class LogPanel {
         ~LogPanel();
         void draw(int windowWidth, int windowHeight);
         void installLogCapture();
+        void addTraceLine(const std::string& line);
 
     private:
         bool visible;

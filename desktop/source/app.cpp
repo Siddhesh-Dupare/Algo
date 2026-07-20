@@ -98,6 +98,7 @@ void app::run() {
                 running = false;
         }
 
+        // NOTE: Get window size and update image if necessary
         int currentWidth, currentHeight;
         SDL_GetWindowSizeInPixels(window, &currentWidth, &currentHeight);
 
@@ -112,7 +113,10 @@ void app::run() {
             lastHeight = currentHeight;
         }
 
-        socket.drainTraceSteps();
+        // NOTE: Trace log
+        for (const auto& step : socket.drainTraceSteps()) {
+            logPanel.addTraceLine(step.dump());
+        }
 
         BLImageData data;
         image.get_data(&data);
