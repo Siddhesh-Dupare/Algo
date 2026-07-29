@@ -48,3 +48,8 @@ next-env.d.ts
 
 __cmake_systeminformation
 desktop/.vscode
+
+
+# testing frameworks
+/frontend/cypress
+/frontend/tests
