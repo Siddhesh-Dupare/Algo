@@ -2,7 +2,7 @@ import { useUnsavedChangesDialogStore } from "@/store/unsavedChangesDialog";
 import { getActivePythonSource } from "./activePythonSource";
 import { useFileStore } from "@/store/file.store";
 
-const BACKEND_WS_URL = "ws://localhost:3001";
+const BACKEND_WS_URL = "ws://localhost:8080/ws";
 
 export async function startDebugSocket(code: string) {
   const ws = new WebSocket(BACKEND_WS_URL);
