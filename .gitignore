@@ -61,6 +61,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+/backend/temp
 ### STS ###
 .apt_generated
 .classpath
