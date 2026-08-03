@@ -13,6 +13,7 @@ import java.io.OutputStreamWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.TimeUnit;
 
 import com.algolens.backend.model.ExecutionResult;
 import com.algolens.backend.model.ExecutionRequest;
@@ -58,7 +59,11 @@ public class PythonExecutor implements LanguageExecutor {
         errThread.start();
 
         // NOTE: Get Input for request
-        int exitCode = process.waitFor();
+        boolean finished = process.waitFor(5, TimeUnit.SECONDS);
+        if (!finished)
+            process.destroyForcibly();
+
+        int exitCode = process.exitValue();
 
         outThread.join();
         errThread.join();
