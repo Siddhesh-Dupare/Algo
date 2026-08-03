@@ -14,17 +14,20 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.algolens.backend.model.ExecutionResult;
 import com.algolens.backend.model.ExecutionRequest;
+import com.algolens.backend.model.ExecutionListeners;
 
 import com.algolens.backend.execution.LanguageExecutor;
 
 @Component
 public class PythonExecutor implements LanguageExecutor {
 
-    AtomicReference<String> stdout = new AtomicReference<>("");
-    AtomicReference<String> stderr = new AtomicReference<>("");
+    private static final Logger logger = LoggerFactory.getLogger(PythonExecutor.class);
+    private static final long EXECUTION_TIMEOUT = 5;
 
     @Override
     public String getLanguage() {
@@ -32,48 +35,81 @@ public class PythonExecutor implements LanguageExecutor {
     }
 
     @Override
-    public ExecutionResult execute(ExecutionRequest request) throws Exception {
+    public ExecutionResult execute(ExecutionRequest request, ExecutionListeners listeners) throws Exception {
 
-        Path pythonFile = createPythonFile(request);
-
-        ProcessBuilder processBuilder = new ProcessBuilder("python", pythonFile.toString());
-        Process process = executeProcess(request, processBuilder);
-
-        Thread outThread = new Thread(() -> {
-            try {
-                stdout.set(readStream(process.getInputStream())); // NOTE: Read stdout (python stdout)
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        });
-
-        Thread errThread = new Thread(() -> {
-            try {
-                stderr.set(readStream(process.getErrorStream())); // NOTE: Read stderr (python stderr)
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        });
-
-        outThread.start();
-        errThread.start();
-
-        // NOTE: Get Input for request
-        boolean finished = process.waitFor(5, TimeUnit.SECONDS);
-        if (!finished)
-            process.destroyForcibly();
-
-        int exitCode = process.exitValue();
-
-        outThread.join();
-        errThread.join();
-
-        System.out.println("Output: " + stdout.get());
-        System.out.println("Error: " + stderr.get());
-        System.out.println("Exit code: " + exitCode);
-
+        AtomicReference<String> stdout = new AtomicReference<>("");
+        AtomicReference<String> stderr = new AtomicReference<>("");
         ExecutionResult result = new ExecutionResult();
-        result.setSuccess(exitCode == 0);
+
+        Path pythonFile = null;
+
+        try {
+            listeners.onStatus("CREATING_FILE");
+            pythonFile = createPythonFile(request);
+
+            ProcessBuilder processBuilder = new ProcessBuilder("python", pythonFile.toString());
+            listeners.onStatus("STARTING_PROCESS");
+            Process process = executeProcess(request, processBuilder);
+
+            listeners.onStatus("RUNNING");
+            Thread outThread = new Thread(() -> {
+                try {
+                    stdout.set(readStream(process.getInputStream())); // NOTE: Read stdout (python stdout)
+                } catch (IOException exception) {
+                    logger.error("Error reading stdout", exception);
+                }
+            });
+
+            Thread errThread = new Thread(() -> {
+                try {
+                    stderr.set(readStream(process.getErrorStream())); // NOTE: Read stderr (python stderr)
+                } catch (IOException exception) {
+                    logger.error("Error reading stderr", exception);
+                }
+            });
+
+            outThread.start();
+            errThread.start();
+
+            // NOTE: Get Input for request
+            boolean finished = process.waitFor(EXECUTION_TIMEOUT, TimeUnit.SECONDS);
+            if (!finished) {
+                process.destroyForcibly();
+                process.waitFor();
+
+                outThread.join();
+                errThread.join();
+
+                result.setRequestId(request.getRequestId());
+                result.setSuccess(false);
+                result.setExitCode(-1);
+                result.setStderr("Execution timed out");
+                listeners.onStatus("TIMED_OUT");
+
+                return result;
+            }
+
+            int exitCode = process.exitValue();
+
+            outThread.join();
+            errThread.join();
+
+            result.setRequestId(request.getRequestId());
+            result.setSuccess(exitCode == 0);
+            result.setStdout(stdout.get());
+            result.setStderr(stderr.get());
+            result.setExitCode(exitCode);
+        }
+
+        catch (Exception exception) {
+            logger.error("Error executing Python code", exception);
+        }
+
+        finally {
+            if (pythonFile != null)
+                Files.deleteIfExists(pythonFile);
+            listeners.onStatus("FINISHED");
+        }
 
         return result;
     }

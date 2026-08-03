@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.algolens.backend.execution.LanguageExecutor;
 import com.algolens.backend.model.ExecutionResult;
 import com.algolens.backend.model.ExecutionRequest;
+import com.algolens.backend.model.ExecutionListeners;
 
 @Service
 public class ExecutionService {
@@ -29,7 +30,12 @@ public class ExecutionService {
             throw new IllegalArgumentException("Unsupported language");
         }
 
-        return executor.execute(request);
+        return executor.execute(request, new ExecutionListeners() {
+            @Override
+            public void onStatus(String status) {
+                System.out.println(status);
+            }
+        });
     }
 
 }
