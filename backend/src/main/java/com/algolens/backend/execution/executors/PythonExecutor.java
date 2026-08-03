@@ -21,14 +21,19 @@ public class PythonExecutor implements LanguageExecutor {
     }
 
     @Override
-    public ExecutionResult execute(ExecutionRequest request) throws IOException {
+    public ExecutionResult execute(ExecutionRequest request) throws Exception {
 
         Path pythonFile = createPythonFile(request);
 
-        System.out.println("Pyton file created at: " + pythonFile.toAbsolutePath());
+        ProcessBuilder processBuilder = new ProcessBuilder("python", pythonFile.toString());
+        Process process = processBuilder.start();
+
+        int exitCode = process.waitFor();
+
+        System.out.println("Exit code: " + exitCode);
 
         ExecutionResult result = new ExecutionResult();
-        result.setSuccess(true);
+        result.setSuccess(exitCode == 0);
 
         return result;
     }
