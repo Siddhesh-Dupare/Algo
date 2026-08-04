@@ -8,6 +8,10 @@
 
 ## Screenshots
 ## Table of Contents
+- [Installation & Setup](#installation--setup)
+  - [Frontend Installation](#frontend-setup)
+  - [Backend Installation](#backend-setup)
+  - [Desktop Installation](#desktop-setup)
 ## Introduction
 ## Features
 ## Demo
@@ -18,7 +22,7 @@
 
 Choose the component you want to set up below to view its installation steps.
 
-<details>
+<details id="frontend-setup">
     <summary>Frontend setup</summary>
 
 ### Prerequisites
@@ -40,7 +44,7 @@ npm run dev
 ```
 </details>
 
-<details>
+<details id="backend-setup">
     <summary>Backend setup</summary>
 
 ### Prerequisites
@@ -62,7 +66,7 @@ cd backend
 ```
 </details>
 
-<details>
+<details id="desktop-setup">
     <summary>Desktop Setup</summary>
 
 ### Prerequisites
