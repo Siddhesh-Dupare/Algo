@@ -1,68 +1,58 @@
 #include "app.h"
-#include "blend2d/core/api.h"
-#include "blend2d/core/format.h"
+#include "components/rect/Rectangle.h"
 
-app::app() :
-window{nullptr}, renderer{nullptr}, texture{nullptr},
-running{false} {}
+using json = nlohmann::json;
 
-app::~app() {
+App::App()
+    : window{nullptr}, renderer{nullptr}, texture{nullptr}, isRunning{false} {}
+
+App::~App() {
     shutdown();
 }
 
-void app::shutdown() {
+void App::shutdown() {
     if (ImGui::GetCurrentContext()) {
         ImGui_ImplSDLRenderer3_Shutdown();
         ImGui_ImplSDL3_Shutdown();
         ImGui::DestroyContext();
     }
-
-    if (renderer)
-        SDL_DestroyRenderer(renderer);
-    if (texture)
-        SDL_DestroyTexture(texture);
     if (window)
         SDL_DestroyWindow(window);
+    if (texture)
+        SDL_DestroyTexture(texture);
+    if (renderer)
+        SDL_DestroyRenderer(renderer);
+
     SDL_Quit();
 }
 
-bool app::init() {
-    logPanel.installLogCapture(); // NOTE: initialize log capture
-    // NOTE: See if the initialization succeeds
+bool App::init() {
     if (!SDL_Init(SDL_INIT_VIDEO)) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL_INIT Failed: %s", SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "SDL initialization failed: %s",
+            SDL_GetError());
         return false;
     }
 
-    // NOTE: SDL Window
     float mainScale = SDL_GetDisplayContentScale(SDL_GetPrimaryDisplay());
-    window =
-        SDL_CreateWindow("AlgoLens", (int)(WIDTH * mainScale), (int)(HEIGHT * mainScale),
-            SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("Blend",
+        (int)(WIDTH * mainScale), (int)(HEIGHT * mainScale), SDL_WINDOW_RESIZABLE);
     if (!window) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Window creation failed: %s", SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Window creation failed: %s",
+            SDL_GetError());
         return false;
     }
 
-    // NOTE: SDL Renderer
     renderer = SDL_CreateRenderer(window, nullptr);
     if (!renderer) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Renderer creation failed: %s", SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Renderer creation failed: %s", SDL_GetError());
         return false;
     }
 
-    image.create(WIDTH, HEIGHT, BL_FORMAT_PRGB32);
-    texture =
-        SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32, SDL_TEXTUREACCESS_STREAMING, WIDTH, HEIGHT);
+    image.create(WIDTH ,HEIGHT, BL_FORMAT_PRGB32);
+    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32, SDL_TEXTUREACCESS_STREAMING,
+        WIDTH, HEIGHT);
     if (!texture) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,"Texture creation failed: %s", SDL_GetError());
-        return false;
-    }
-    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND_PREMULTIPLIED);
-
-    // NOTE: loading the web socket
-    if (!socket.webSocketInit()) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Failed to load websocket");
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Texture creation failed: %s", SDL_GetError());
         return false;
     }
 
@@ -70,8 +60,8 @@ bool app::init() {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     (void)io;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // NOTE: Enable keyboard navigation
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad; // NOTE: Enable gamepad navigation
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
 
     ImGuiStyle& style = ImGui::GetStyle();
     style.ScaleAllSizes(mainScale);
@@ -80,42 +70,30 @@ bool app::init() {
     ImGui_ImplSDL3_InitForSDLRenderer(window, renderer);
     ImGui_ImplSDLRenderer3_Init(renderer);
 
-    // NOTE: If everything succeeds, set running to true
-    running = true;
+    isRunning = true;
     return true;
 }
 
-void app::run() {
+void App::run() {
     int lastWidth = -1;
     int lastHeight = -1;
 
-    while (running) {
+    while (isRunning) {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-            ImGui_ImplSDL3_ProcessEvent(&event);
-            // NOTE: Handle quit event for the window
             if (event.type == SDL_EVENT_QUIT)
-                running = false;
+                isRunning = false;
         }
 
-        // NOTE: Get window size and update image if necessary
         int currentWidth, currentHeight;
         SDL_GetWindowSizeInPixels(window, &currentWidth, &currentHeight);
-
         if (currentWidth != lastWidth || currentHeight != lastHeight) {
             image.create(currentWidth, currentHeight, BL_FORMAT_PRGB32);
             if (texture) SDL_DestroyTexture(texture);
-            texture =
-                SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32, SDL_TEXTUREACCESS_STREAMING,
-                    currentWidth, currentHeight);
-            SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND_PREMULTIPLIED);
+            texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB32,
+                SDL_TEXTUREACCESS_STREAMING, currentWidth, currentHeight);
             lastWidth = currentWidth;
             lastHeight = currentHeight;
-        }
-
-        // NOTE: Trace log
-        for (const auto& step : socket.drainTraceSteps()) {
-            logPanel.addTraceLine(step.dump());
         }
 
         BLImageData data;
@@ -126,9 +104,24 @@ void app::run() {
         ImGui_ImplSDL3_NewFrame();
         ImGui::NewFrame();
 
-        // TODO: Code goes here for ImGui::Begin()/ImGui::End() widgets
-        // NOTE: Log Panel
-        logPanel.draw(currentWidth, currentHeight);
+        BLContext context(image);
+        context.clear_all();
+
+        Rectangle rect(20.0, 20.f, 400.0, 400.0, 12.0, 12.0);
+        rect.setFillColor(BLRgba32(0xFF2F5FDF));
+        rect.draw(context);
+
+        // BLGradient linear(BLLinearGradientValues(0, 0, currentWidth, currentHeight));
+
+        // linear.add_stop(0.0, BLRgba32(0xFFFFFFFF));
+        // linear.add_stop(0.5, BLRgba32(0xFF5FAFDF));
+        // linear.add_stop(1.0, BLRgba32(0xFF2F5FDF));
+
+        // context.set_fill_style(linear);
+        // context.fill_round_rect(40.0, 40.0, 400.0, 400.0, 45.5);
+
+        context.end();
+        image.write_to_file("output.png");
 
         ImGui::Render();
 

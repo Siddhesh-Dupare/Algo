@@ -1,7 +1,7 @@
 #include "source/app.h"
 
 int main(int argc, char* argv[]) {
-    app App;
+    App App;
 
     if (!App.init())
         return 1;

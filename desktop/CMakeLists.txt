@@ -82,21 +82,20 @@ set(IMGUI_SOURCES
 
 # NOTE: GoogleTest
 add_executable(app_test
-  tests/app_test.cpp
-  tests/test_socket.cpp
+  tests/AppTests.cpp
+  tests/json.cpp
+  tests/Rectangle.cpp
   source/app.cpp
-  source/connection/Socket.cpp
-  source/components/logpanel/LogPanel.cpp
-  source/helper/Utils.cpp
+  source/format/json_extractor.cpp
+  source/components/rect/Rectangle.cpp
   ${IMGUI_SOURCES}
 )
 
 add_executable(AlgoLens
-  source/app.cpp
-  source/connection/Socket.cpp
-  source/components/logpanel/LogPanel.cpp
-  source/helper/Utils.cpp
   main.cpp
+  source/app.cpp
+  source/format/json_extractor.cpp
+  source/components/rect/Rectangle.cpp
   ${IMGUI_SOURCES}
 )
 
