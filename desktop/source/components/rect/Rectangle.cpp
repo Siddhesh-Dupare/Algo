@@ -21,4 +21,16 @@ void Rectangle::draw(BLContext& context) const {
         context.set_stroke_width(strokeWidth);
         context.stroke_round_rect(roundRect);
     }
+
+    for (const Text& t : text)
+        t.draw(context);
+}
+
+void Rectangle::addText(Text text, double offsetX, double offsetY) {
+    BLFontMetrics metrics = text.getMetrics();
+    double absoluteX = x + offsetX;
+    double absoluteY = y + offsetY;
+
+    text.setPosition(absoluteX, absoluteY);
+    this->text.push_back(text);
 }

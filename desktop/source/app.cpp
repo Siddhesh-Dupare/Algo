@@ -1,5 +1,6 @@
 #include "app.h"
 #include "components/rect/Rectangle.h"
+#include "components/text/Text.h"
 
 using json = nlohmann::json;
 
@@ -108,9 +109,23 @@ void App::run() {
         context.clear_all();
 
         double margin = 20.0;
-        Rectangle rect(margin, margin, currentWidth - (margin * 2.0), 120.0, 8.0, 8.0);
-        rect.setFillColor(BLRgba32(0xFF2F5FDF));
-        rect.draw(context);
+        Rectangle container(margin, margin, currentWidth - (margin * 2.0), 120.0, 8.0, 8.0);
+        container.setFillColor(BLRgba32(0xF0, 0xF4, 0xF8));
+        container.setStroke(BLRgba32(0x3B, 0x82, 0xF6), 2.0);
+
+        Text text("First Text");
+        text.loadFont("assets/font/SourceCodePro.ttf", 22.0);
+        text.setColor(BLRgba32(0x00, 0x00, 0x00));
+
+        Text text2("Second Text");
+        text2.loadFont("assets/font/SourceCodePro.ttf", 22.0);
+        text2.setColor(BLRgba32(0x00, 0x00, 0x00));
+
+        container.addText(text, 20.0, 20.0);
+        container.addText(text2, 20.0, 50.0);
+        container.draw(context);
+
+
 
         // BLGradient linear(BLLinearGradientValues(0, 0, currentWidth, currentHeight));
 

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <blend2d/blend2d.h>
+#include <vector>
+#include "../text/Text.h"
 
 class Rectangle {
     private:
@@ -9,6 +11,8 @@ class Rectangle {
         BLRgba32 fillColor;
         BLRgba32 strokeColor;
         double strokeWidth;
+
+        std::vector<Text> text;
     public:
         Rectangle(double x, double y, double w, double h, double rx = 0.0, double ry = 0.0);
 
@@ -26,5 +30,8 @@ class Rectangle {
 
         // NOTE: Draw the rectangle
         void draw(BLContext& context) const;
+
+        // NOTE: Text to stay relative to the rectangle
+        void addText(Text text, double offsetX, double offsetY);
 
 };
