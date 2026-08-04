@@ -6,7 +6,6 @@
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 
-
 ## Screenshots
 ## Table of Contents
 ## Introduction
@@ -15,7 +14,89 @@
 ## System Architecture
 ## Technology Stack
 ## Project Structure
-## Installation
+## Installation & Setup
+
+Choose the component you want to set up below to view its installation steps.
+
+<details>
+    <summary>Frontend setup</summary>
+
+### Prerequisites
+- Node.js
+- npm or yarn
+
+### Steps
+1. Navigate to the frontend directory
+```bash
+cd frontend 
+```
+2. Install dependencies:
+```bash
+npm install
+```
+3. Start the local development server:
+```bash
+npm run dev
+```
+</details>
+
+<details>
+    <summary>Backend setup</summary>
+
+### Prerequisites
+- Java
+- Gradle
+
+### Steps
+1. Navigate to the backend directory
+```bash
+cd backend 
+```
+2. Build the project
+```bash
+./gradlew build
+```
+3. Run the application
+```bash
+./gradlew.bat bootRun
+```
+</details>
+
+<details>
+    <summary>Desktop Setup</summary>
+
+### Prerequisites
+- Cmake
+- Ninja
+- C++
+
+### Steps
+1. Navigate to the desktop directory
+```bash
+cd desktop
+```
+2. Create a build directory
+```bash
+mkdir build
+```
+3. Navigate to the build directory
+```bash
+cd build
+```
+4. Run CMake to configure the build
+```bash
+cmake .. -G Ninja
+```
+5. Build the project
+```bash
+cmake --build .
+```
+6. Run the application
+```bash
+AlgoLens.exe
+```
+</details>
+
 ## Configuration
 ## Usage
 ## Execution Flow
