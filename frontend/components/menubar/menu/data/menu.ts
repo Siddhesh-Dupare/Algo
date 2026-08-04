@@ -1,4 +1,7 @@
 
+import { useEditorStore } from "@/store/editorstore";
+import { runActiveFile } from "@/lib/RunFile";
+
 export type MenubarItemConfig = {
   id?: string;
   type?: "item" | "separator";
@@ -84,7 +87,8 @@ export const menuConfig: MenuConfig[] = [
         id: "run",
         type: "item",
         label: "Run",
-        shortcut: "CTRL+R"
+        shortcut: "CTRL+R",
+        action: () => runActiveFile(),
       }
     ]
   }

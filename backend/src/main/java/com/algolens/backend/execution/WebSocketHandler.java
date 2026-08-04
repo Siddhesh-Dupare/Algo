@@ -10,6 +10,7 @@ import tools.jackson.databind.ObjectMapper;
 import com.algolens.backend.model.ExecutionRequest;
 import com.algolens.backend.model.ExecutionResult;
 import com.algolens.backend.execution.ExecutionService;
+import com.algolens.backend.execution.MessageDispatcher;
 
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
@@ -34,11 +35,16 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) {
+
+        System.out.println("Received Message: " + message.getPayload());
+
         try {
             ExecutionRequest request = mapper.readValue(message.getPayload(), ExecutionRequest.class);
-            ExecutionResult result = executionService.execute(request);
+            // ExecutionResult result = executionService.execute(request);
+            MessageDispatcher messageDispatcher = new MessageDispatcher(executionService, mapper);
+            messageDispatcher.dispatch(session, request);
 
-            session.sendMessage(new TextMessage(mapper.writeValueAsString(result)));
+            // session.sendMessage(new TextMessage(mapper.writeValueAsString(result)));
         } catch (Exception exception) {
             System.out.println("[BACKEND]: ERROR -> " + exception.getMessage());
         }
