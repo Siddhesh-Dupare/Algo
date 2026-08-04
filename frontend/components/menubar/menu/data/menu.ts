@@ -75,5 +75,17 @@ export const menuConfig: MenuConfig[] = [
         shortcut: "Ctrl+K S",
       },
     ]
+  },
+  {
+    id: "run",
+    trigger: "Run",
+    items: [
+      {
+        id: "run",
+        type: "item",
+        label: "Run",
+        shortcut: "CTRL+R"
+      }
+    ]
   }
 ]
