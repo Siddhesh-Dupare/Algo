@@ -88,6 +88,7 @@ add_executable(app_test
   source/app.cpp
   source/format/json_extractor.cpp
   source/components/rect/Rectangle.cpp
+  source/components/text/Text.cpp
   ${IMGUI_SOURCES}
 )
 
@@ -96,6 +97,7 @@ add_executable(AlgoLens
   source/app.cpp
   source/format/json_extractor.cpp
   source/components/rect/Rectangle.cpp
+  source/components/text/Text.cpp
   ${IMGUI_SOURCES}
 )
 

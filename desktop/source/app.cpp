@@ -107,7 +107,8 @@ void App::run() {
         BLContext context(image);
         context.clear_all();
 
-        Rectangle rect(20.0, 20.f, 400.0, 400.0, 12.0, 12.0);
+        double margin = 20.0;
+        Rectangle rect(margin, margin, currentWidth - (margin * 2.0), 120.0, 8.0, 8.0);
         rect.setFillColor(BLRgba32(0xFF2F5FDF));
         rect.draw(context);
 
