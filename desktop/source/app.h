@@ -6,6 +6,7 @@
 #include "imgui_impl_sdl3.h"
 #include "imgui_impl_sdlrenderer3.h"
 #include <nlohmann/json.hpp>
+#include "format/json_extractor.h"
 
 class App {
     public:
@@ -25,4 +26,6 @@ class App {
 
         const int WIDTH = 1200;
         const int HEIGHT = 800;
+
+        JsonExtractor jsonExtractor;
 };

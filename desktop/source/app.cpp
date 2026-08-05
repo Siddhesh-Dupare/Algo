@@ -1,11 +1,12 @@
 #include "app.h"
 #include "components/rect/Rectangle.h"
 #include "components/text/Text.h"
+#include <string>
 
 using json = nlohmann::json;
 
 App::App()
-    : window{nullptr}, renderer{nullptr}, texture{nullptr}, isRunning{false} {}
+    : window{nullptr}, renderer{nullptr}, texture{nullptr}, isRunning{false}, jsonExtractor{"../test-json.json"} {}
 
 App::~App() {
     shutdown();
@@ -110,19 +111,21 @@ void App::run() {
 
         double margin = 20.0;
         Rectangle container(margin, margin, currentWidth - (margin * 2.0), 120.0, 8.0, 8.0);
-        container.setFillColor(BLRgba32(0xF0, 0xF4, 0xF8));
+        container.setFillColor(BLRgba32(0xFF, 0x39, 0x3E, 0x46));
         container.setStroke(BLRgba32(0x3B, 0x82, 0xF6), 2.0);
 
-        Text text("First Text");
-        text.loadFont("assets/font/SourceCodePro.ttf", 22.0);
-        text.setColor(BLRgba32(0x00, 0x00, 0x00));
+        jsonExtractor.setDescription("description");
+        Text text(jsonExtractor.getDescription().c_str());
+        text.loadFont("assets/font/Inter_24pt-Bold.ttf", 24.0);
+        text.setColor(BLRgba32(0xFF, 0xFF, 0xFF));
 
-        Text text2("Second Text");
-        text2.loadFont("assets/font/SourceCodePro.ttf", 22.0);
-        text2.setColor(BLRgba32(0x00, 0x00, 0x00));
+        jsonExtractor.setAlgorithm("algorithm");
+        Text text2(jsonExtractor.getAlgorithm().c_str());
+        text2.loadFont("assets/font/Inter_24pt-Regular.ttf", 22.0);
+        text2.setColor(BLRgba32(0xFF, 0xFF, 0xFF));
 
-        container.addText(text, 20.0, 20.0);
-        container.addText(text2, 20.0, 50.0);
+        container.addText(text, 20.0, 40.0);
+        container.addText(text2, 20.0, 70.0);
         container.draw(context);
 
 
