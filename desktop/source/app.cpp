@@ -116,17 +116,17 @@ void App::run() {
 
         jsonExtractor.setDescription("description");
         Text text(jsonExtractor.getDescription().c_str());
-        text.loadFont("assets/font/Inter_24pt-Bold.ttf", 24.0);
         text.setColor(BLRgba32(0xFF, 0xFF, 0xFF));
+        text.draw(context);
 
-        jsonExtractor.setAlgorithm("algorithm");
-        Text text2(jsonExtractor.getAlgorithm().c_str());
-        text2.loadFont("assets/font/Inter_24pt-Regular.ttf", 22.0);
-        text2.setColor(BLRgba32(0xFF, 0xFF, 0xFF));
+        // jsonExtractor.setAlgorithm("algorithm");W
+        // Text text2(jsonExtractor.getAlgorithm().c_str());
+        // text2.loadFont("assets/font/Inter_24pt-Regular.ttf", 22.0);
+        // text2.setColor(BLRgba32(0xFF, 0xFF, 0xFF));
 
-        container.addText(text, 20.0, 40.0);
-        container.addText(text2, 20.0, 70.0);
-        container.draw(context);
+        // container.addText(text, 20.0, 40.0);
+        // container.addText(text2, 20.0, 70.0);
+        // container.draw(context);
 
 
 

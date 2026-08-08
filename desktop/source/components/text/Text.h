@@ -9,6 +9,15 @@ class Text {
         BLRgba32 color;
         BLPoint position;
         std::string context;
+
+        struct Properties {
+            double width;
+            double height;
+        } props;
+
+    protected:
+        void setProperties();
+
     public:
         Text(const std::string& context = "");
 
