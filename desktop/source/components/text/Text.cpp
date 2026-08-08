@@ -3,8 +3,7 @@
 
 Text::Text(const std::string& context)
     : context{context},
-    color{BLRgba32(0x00, 0x00, 0x00)},
-    position{BLPoint(0, 0)} {
+    color{BLRgba32(0x00, 0x00, 0x00)} {
 
         if (!loadFont("assets/font/Inter_24pt-Regular.ttf", 18.0)) {
             SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to load font:");
@@ -12,6 +11,7 @@ Text::Text(const std::string& context)
         }
 
         setProperties();
+        setPosition(0, fontMetrics.ascent);
 }
 
 bool Text::loadFont(const char* fontPath, float fontSize) {
@@ -29,7 +29,7 @@ void Text::setProperties() {
     font.get_text_metrics(buffer, textMetrics);
 
     // NOTE: To get height of the text
-    BLFontMetrics fontMetrics = font.metrics();
+    fontMetrics = font.metrics();
 
     props.width = textMetrics.advance.x;
     props.height = fontMetrics.ascent + fontMetrics.descent;
@@ -45,8 +45,28 @@ void Text::setPositionInside(const BLPoint& bounds, double paddingX, double padd
 void Text::draw(BLContext& context) const {
     if (this->context.empty()) return;
 
-    SDL_Log("Width: %f, Height: %f", props.width, props.height);
-
     context.set_fill_style(color);
     context.fill_utf8_text(position, font, this->context.c_str());
+}
+
+void Text::setAlignment(BLContext& context, HorizontalAlignment horizontal, VerticalAlignment vertical) {
+    // NOTE: Horizontal alignment
+    if (horizontal == HorizontalAlignment::LEFT) {
+        position.x = 0;
+    }
+    else if (horizontal == HorizontalAlignment::CENTER) {
+        position.x = (context.target_width() - props.width) / 2;
+    }
+    else if (horizontal == HorizontalAlignment::RIGHT) {
+        position.x = context.target_width() - props.width;
+    }
+
+    // NOTE: Vertical alignment
+    if (vertical == VerticalAlignment::TOP) {
+        position.y = fontMetrics.ascent;
+    } else if (vertical == VerticalAlignment::CENTER) {
+        position.y = (context.target_height() - props.height) / 2;
+    } else if (vertical == VerticalAlignment::BOTTOM) {
+        position.y = context.target_height() - props.height;
+    }
 }

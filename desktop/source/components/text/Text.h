@@ -3,12 +3,21 @@
 #include <blend2d/blend2d.h>
 #include <string>
 
+enum class HorizontalAlignment {
+    LEFT, CENTER, RIGHT
+};
+enum class VerticalAlignment {
+    TOP, CENTER, BOTTOM
+};
+
 class Text {
     private:
         BLFont font;
         BLRgba32 color;
         BLPoint position;
         std::string context;
+
+        BLFontMetrics fontMetrics;
 
         struct Properties {
             double width;
@@ -37,4 +46,7 @@ class Text {
 
         // NOTE: Render
         void draw(BLContext& context) const;
+
+        // NOTE: Alignment
+        void setAlignment(BLContext& context, HorizontalAlignment horizontal, VerticalAlignment vertial);
 };

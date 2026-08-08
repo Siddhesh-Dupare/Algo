@@ -117,6 +117,7 @@ void App::run() {
         jsonExtractor.setDescription("description");
         Text text(jsonExtractor.getDescription().c_str());
         text.setColor(BLRgba32(0xFF, 0xFF, 0xFF));
+        text.setAlignment(context, HorizontalAlignment::CENTER, VerticalAlignment::CENTER);
         text.draw(context);
 
         // jsonExtractor.setAlgorithm("algorithm");W
