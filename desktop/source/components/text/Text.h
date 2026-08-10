@@ -43,6 +43,8 @@ class Text {
         // NOTE: Getters
         BLFontMetrics getMetrics() const { return font.metrics(); }
         BLPoint getPosition() const { return position; }
+        double getWidth() const { return props.width; }
+        double getHeight() const { return props.height; }
 
         // NOTE: Render
         void draw(BLContext& context) const;
