@@ -92,3 +92,24 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
+
+# Local Python tooling and runtime files
+*.log
+generator/.env
+generator/.env.*

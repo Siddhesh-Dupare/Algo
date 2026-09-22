@@ -1,19 +1,23 @@
 #include <gtest/gtest.h>
 #include "../source/format/json_extractor.h"
+#include "SDL3/SDL_Log.h"
 
-TEST(JsonExtractorTest, Init) {
-    JsonExtractor extractor("../test-json.json");
-    extractor.setDescription("description");
-    ASSERT_NO_THROW(extractor.getDescription());
-    SDL_Log("Description: %s", extractor.getDescription().c_str());
+TEST(JsonExtractorTest, LoadTheData) {
+    JsonExtractor extractor;
+    ASSERT_TRUE(extractor.isLoaded());
 
-    extractor.setAlgorithm("algorithm");
-    ASSERT_NO_THROW(extractor.getAlgorithm());
-    SDL_Log("Algorithm: %s", extractor.getAlgorithm().c_str());
+    ASSERT_NE(extractor.getDescription(), "");
 
-    extractor.setSteps("total_steps");
-    ASSERT_NO_THROW(extractor.getSteps());
-    SDL_Log("Total Steps: %d", extractor.getSteps());
+    for (const auto& step : extractor.getSteps()) {
+        ASSERT_NE(step.stepId, 0);
+        ASSERT_NE(step.description, "");
+        ASSERT_NE(step.action, "");
+        ASSERT_NE(step.explanation, "");
 
-    // ASSERT_EQ(extractor.getDescription(), "");
+        for (const auto& [key, value] : step.variables) {
+            std::string valueString = value.dump();
+
+            SDL_Log("Variables: %s = %s", key.c_str(), valueString.c_str());
+        }
+    }
 }

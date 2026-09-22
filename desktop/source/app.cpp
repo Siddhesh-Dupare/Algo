@@ -1,12 +1,7 @@
 #include "app.h"
-#include "components/rect/Rectangle.h"
-#include "components/text/Text.h"
-#include <string>
-
-using json = nlohmann::json;
 
 App::App()
-    : window{nullptr}, renderer{nullptr}, texture{nullptr}, isRunning{false}, jsonExtractor{"../test-json.json"} {}
+    : window{nullptr}, renderer{nullptr}, texture{nullptr}, isRunning{false} {}
 
 App::~App() {
     shutdown();
@@ -109,36 +104,7 @@ void App::run() {
         BLContext context(image);
         context.clear_all();
 
-        double margin = 20.0;
-        Rectangle container(margin, margin, currentWidth - (margin * 2.0), 120.0, 8.0, 8.0);
-        container.setFillColor(BLRgba32(0xFF, 0x39, 0x3E, 0x46));
-        container.setStroke(BLRgba32(0x3B, 0x82, 0xF6), 2.0);
-
-        jsonExtractor.setDescription("description");
-        Text text(jsonExtractor.getDescription().c_str());
-        text.setColor(BLRgba32(0xFF, 0xFF, 0xFF));
-        text.setAlignment(context, HorizontalAlignment::CENTER, VerticalAlignment::CENTER);
-        text.draw(context);
-
-        // jsonExtractor.setAlgorithm("algorithm");W
-        // Text text2(jsonExtractor.getAlgorithm().c_str());
-        // text2.loadFont("assets/font/Inter_24pt-Regular.ttf", 22.0);
-        // text2.setColor(BLRgba32(0xFF, 0xFF, 0xFF));
-
-        // container.addText(text, 20.0, 40.0);
-        // container.addText(text2, 20.0, 70.0);
-        // container.draw(context);
-
-
-
-        // BLGradient linear(BLLinearGradientValues(0, 0, currentWidth, currentHeight));
-
-        // linear.add_stop(0.0, BLRgba32(0xFFFFFFFF));
-        // linear.add_stop(0.5, BLRgba32(0xFF5FAFDF));
-        // linear.add_stop(1.0, BLRgba32(0xFF2F5FDF));
-
-        // context.set_fill_style(linear);
-        // context.fill_round_rect(40.0, 40.0, 400.0, 400.0, 45.5);
+        // NOTE: Start here
 
         context.end();
         image.write_to_file("output.png");
