@@ -1,7 +1,13 @@
-#include <iostream>
+#include "source/App.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    SDL_Init(SDL_INIT_VIDEO);
+
+    {
+        App app;
+    }
+
+    SDL_Quit();
 
     return 0;
 }
