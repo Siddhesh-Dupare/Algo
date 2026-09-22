@@ -71,6 +71,8 @@ add_executable(app_test
 # NOTE: Actual Execution
 add_executable(AlgoLens
   main.cpp
+  source/App.cpp
+  source/window/Window.cpp
   ${IMGUI_SOURCES}
 )
 

@@ -1,27 +1,9 @@
 {
-  "date": "2026-08-10T13:15:20.292163+05:30",
+  "date": "2026-09-22T23:12:07.6877769Z",
   "data": {
     "D:\\Projects\\Algo\\engine\\CMakeLists.txt": [
       {
-        "label": "CMAKE_CXX_STANDARD",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt\n\nSet the global C++ Standard"
-      },
-      {
-        "label": "CMAKE_CXX_STANDARD_REQUIRED",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "CMAKE_EXPORT_COMPILE_COMMANDS",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "CMAKE_MSVC_RUNTIME_LIBRARY",
+        "label": "SDL_TEST",
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
@@ -33,43 +15,19 @@
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
       },
       {
-        "label": "SDL_STATIC",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "SDL_TEST",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
         "label": "ASMJIT_DIR",
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
       },
       {
-        "label": "gtest_force_shared_crt",
+        "label": "SDL_STATIC",
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
       },
       {
-        "label": "USE_TLS",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt\n\nixwebsocket"
-      },
-      {
-        "label": "USE_ZLIB",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "IXWEBSOCKET_INSTALL",
+        "label": "CMAKE_EXPORT_COMPILE_COMMANDS",
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
@@ -81,7 +39,25 @@
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
       },
       {
+        "label": "gtest_force_shared_crt",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "CMAKE_CXX_STANDARD",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt\n\nSet the global C++ Standard"
+      },
+      {
         "label": "IMGUI_SOURCES",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "CMAKE_CXX_STANDARD_REQUIRED",
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"

@@ -1,9 +1,9 @@
 {
-  "date": "2026-08-10T13:15:20.297992100+05:30",
+  "date": "2026-09-22T23:12:07.6942698Z",
   "data": {
     "CMAKE_CXX_STANDARD_REQUIRED": {
       "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
         "range": {
           "start": {
             "line": 5,
@@ -15,75 +15,92 @@
           }
         }
       },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt",
       "is_function": false
     },
-    "SDL_STATIC": {
+    "IMGUI_DIR": {
       "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
         "range": {
           "start": {
-            "line": 23,
+            "line": 54,
             "character": 4
           },
           "end": {
-            "line": 23,
-            "character": 14
+            "line": 54,
+            "character": 13
           }
         }
       },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt",
       "is_function": false
     },
     "SDL_TEST": {
       "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
         "range": {
           "start": {
-            "line": 24,
+            "line": 17,
             "character": 4
           },
           "end": {
-            "line": 24,
+            "line": 17,
             "character": 12
           }
         }
       },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
-      "is_function": false
-    },
-    "ASMJIT_DIR": {
-      "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
-        "range": {
-          "start": {
-            "line": 34,
-            "character": 4
-          },
-          "end": {
-            "line": 34,
-            "character": 14
-          }
-        }
-      },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt",
       "is_function": false
     },
     "IMGUI_SOURCES": {
       "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
         "range": {
           "start": {
-            "line": 72,
+            "line": 55,
             "character": 4
           },
           "end": {
-            "line": 72,
+            "line": 55,
             "character": 17
           }
         }
       },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt",
+      "is_function": false
+    },
+    "gtest_force_shared_crt": {
+      "location": {
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
+        "range": {
+          "start": {
+            "line": 39,
+            "character": 4
+          },
+          "end": {
+            "line": 39,
+            "character": 26
+          }
+        }
+      },
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt",
+      "is_function": false
+    },
+    "SDL_STATIC": {
+      "location": {
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
+        "range": {
+          "start": {
+            "line": 16,
+            "character": 4
+          },
+          "end": {
+            "line": 16,
+            "character": 14
+          }
+        }
+      },
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt",
       "is_function": false
     },
     "USE_TLS": {
@@ -103,34 +120,34 @@
       "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt\n\nixwebsocket",
       "is_function": false
     },
-    "gtest_force_shared_crt": {
+    "CMAKE_MSVC_RUNTIME_LIBRARY": {
       "location": {
         "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
         "range": {
           "start": {
-            "line": 46,
-            "character": 4
+            "line": 13,
+            "character": 6
           },
           "end": {
-            "line": 46,
-            "character": 26
+            "line": 13,
+            "character": 32
           }
         }
       },
       "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
       "is_function": false
     },
-    "IMGUI_DIR": {
+    "IXWEBSOCKET_INSTALL": {
       "location": {
         "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
         "range": {
           "start": {
-            "line": 71,
+            "line": 58,
             "character": 4
           },
           "end": {
-            "line": 71,
-            "character": 13
+            "line": 58,
+            "character": 23
           }
         }
       },
@@ -154,43 +171,9 @@
       "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
       "is_function": false
     },
-    "CMAKE_CXX_STANDARD": {
-      "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
-        "range": {
-          "start": {
-            "line": 4,
-            "character": 4
-          },
-          "end": {
-            "line": 4,
-            "character": 22
-          }
-        }
-      },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt\n\nSet the global C++ Standard",
-      "is_function": false
-    },
-    "IXWEBSOCKET_INSTALL": {
-      "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
-        "range": {
-          "start": {
-            "line": 58,
-            "character": 4
-          },
-          "end": {
-            "line": 58,
-            "character": 23
-          }
-        }
-      },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
-      "is_function": false
-    },
     "CMAKE_EXPORT_COMPILE_COMMANDS": {
       "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
         "range": {
           "start": {
             "line": 6,
@@ -202,41 +185,58 @@
           }
         }
       },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt",
+      "is_function": false
+    },
+    "CMAKE_CXX_STANDARD": {
+      "location": {
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
+        "range": {
+          "start": {
+            "line": 4,
+            "character": 4
+          },
+          "end": {
+            "line": 4,
+            "character": 22
+          }
+        }
+      },
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt\n\nSet the global C++ Standard",
       "is_function": false
     },
     "SDL_SHARED": {
       "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
         "range": {
           "start": {
-            "line": 22,
+            "line": 15,
             "character": 4
           },
           "end": {
-            "line": 22,
+            "line": 15,
             "character": 14
           }
         }
       },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt",
       "is_function": false
     },
-    "CMAKE_MSVC_RUNTIME_LIBRARY": {
+    "ASMJIT_DIR": {
       "location": {
-        "uri": "file:///D:/Projects/Algo/desktop/CMakeLists.txt",
+        "uri": "file:///D:/Projects/Algo/engine/CMakeLists.txt",
         "range": {
           "start": {
-            "line": 13,
-            "character": 6
+            "line": 27,
+            "character": 4
           },
           "end": {
-            "line": 13,
-            "character": 32
+            "line": 27,
+            "character": 14
           }
         }
       },
-      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt",
+      "document_info": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt",
       "is_function": false
     }
   }
