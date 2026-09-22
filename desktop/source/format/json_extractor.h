@@ -2,7 +2,6 @@
 
 #include <nlohmann/json.hpp>
 #include <fstream>
-#include <stdexcept>
 #include <string>
 #include <SDL3/SDL_Log.h>
 #include <vector>

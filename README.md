@@ -101,6 +101,13 @@ AlgoLens.exe
 ```
 </details>
 
+<details>
+    <summary>Python Setup</summary>
+
+<p>pytest run for model test</p>
+<code>python -m pytest tests/test_response.py -v</code>
+</details>
+
 ## Configuration
 ## Usage
 ## Execution Flow
