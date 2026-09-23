@@ -7,8 +7,6 @@ Renderer::Renderer(SDL_Window* m_window) {
         m_window, nullptr
     );
 
-    SDL_Log("SDL_Renderer is working");
-
     if (!m_renderer) {
         throw std::runtime_error(
             std::format("[SDL_Renderer] Failed to create renderer: {}", SDL_GetError())
