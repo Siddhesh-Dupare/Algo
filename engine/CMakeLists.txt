@@ -73,6 +73,7 @@ add_executable(AlgoLens
   main.cpp
   source/App.cpp
   source/window/Window.cpp
+  source/renderer/Renderer.cpp
   ${IMGUI_SOURCES}
 )
 

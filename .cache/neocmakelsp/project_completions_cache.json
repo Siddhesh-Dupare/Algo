@@ -1,15 +1,21 @@
 {
-  "date": "2026-09-22T23:12:07.6877769Z",
+  "date": "2026-09-23T13:22:39.4579975Z",
   "data": {
     "D:\\Projects\\Algo\\engine\\CMakeLists.txt": [
       {
-        "label": "SDL_TEST",
+        "label": "gtest_force_shared_crt",
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
       },
       {
-        "label": "SDL_SHARED",
+        "label": "CMAKE_CXX_STANDARD_REQUIRED",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "SDL_STATIC",
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
@@ -21,7 +27,13 @@
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
       },
       {
-        "label": "SDL_STATIC",
+        "label": "SDL_SHARED",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "SDL_TEST",
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
@@ -39,12 +51,6 @@
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
       },
       {
-        "label": "gtest_force_shared_crt",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
         "label": "CMAKE_CXX_STANDARD",
         "kind": 12,
         "detail": "Value",
@@ -52,12 +58,6 @@
       },
       {
         "label": "IMGUI_SOURCES",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "CMAKE_CXX_STANDARD_REQUIRED",
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
