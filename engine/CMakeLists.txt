@@ -73,6 +73,8 @@ add_executable(AlgoLens
   main.cpp
   source/App.cpp
   source/window/Window.cpp
+  source/renderer/Renderer.cpp
+  source/texture/Texture.cpp
   ${IMGUI_SOURCES}
 )
 

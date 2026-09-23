@@ -1,13 +1,12 @@
 #include "source/App.h"
 
 int main() {
-    SDL_Init(SDL_INIT_VIDEO);
-
-    {
+    try {
         App app;
+        app.run();
+    } catch (const std::exception& e) {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "%s", e.what());
     }
-
-    SDL_Quit();
 
     return 0;
 }
