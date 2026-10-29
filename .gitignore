@@ -113,3 +113,7 @@ htmlcov/
 *.log
 generator/.env
 generator/.env.*
+
+# Web
+/web/.next
+/web/node_modules
