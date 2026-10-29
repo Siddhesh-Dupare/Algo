@@ -2,13 +2,15 @@
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Label } from "@/components/ui/label";
 
+import UploadCard from "@/components/pages/UploadCard";
+
 export default function App() {
   return (
     <div className="flex justify-center items-center">
       <ResizablePanelGroup orientation="horizontal">
         <ResizablePanel defaultValue="40%">
           <div className="flex justify-center items-center min-h-screen">
-            <Label>Upload</Label>
+            <UploadCard />
           </div>
         </ResizablePanel>
         <ResizableHandle withHandle />
