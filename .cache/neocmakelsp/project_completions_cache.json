@@ -1,68 +1,6 @@
 {
-  "date": "2026-09-23T13:22:39.4579975Z",
+  "date": "2026-10-29T11:16:46.954991019Z",
   "data": {
-    "D:\\Projects\\Algo\\engine\\CMakeLists.txt": [
-      {
-        "label": "gtest_force_shared_crt",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "CMAKE_CXX_STANDARD_REQUIRED",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "SDL_STATIC",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "ASMJIT_DIR",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "SDL_SHARED",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "SDL_TEST",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "CMAKE_EXPORT_COMPILE_COMMANDS",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "IMGUI_DIR",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      },
-      {
-        "label": "CMAKE_CXX_STANDARD",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt\n\nSet the global C++ Standard"
-      },
-      {
-        "label": "IMGUI_SOURCES",
-        "kind": 12,
-        "detail": "Value",
-        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
-      }
-    ],
     "D:\\Projects\\Algo\\desktop\\CMakeLists.txt": [
       {
         "label": "CMAKE_CXX_STANDARD",
@@ -147,6 +85,640 @@
         "kind": 12,
         "detail": "Value",
         "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\desktop\\CMakeLists.txt"
+      }
+    ],
+    "D:\\Projects\\Algo\\engine\\CMakeLists.txt": [
+      {
+        "label": "gtest_force_shared_crt",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "CMAKE_CXX_STANDARD_REQUIRED",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "SDL_STATIC",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "ASMJIT_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "SDL_SHARED",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "SDL_TEST",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "CMAKE_EXPORT_COMPILE_COMMANDS",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "IMGUI_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      },
+      {
+        "label": "CMAKE_CXX_STANDARD",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt\n\nSet the global C++ Standard"
+      },
+      {
+        "label": "IMGUI_SOURCES",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: D:\\Projects\\Algo\\engine\\CMakeLists.txt"
+      }
+    ],
+    "/home/siddheshdupare/Projects/Algo/new_engine/CMakeLists.txt": [
+      {
+        "label": "download_stamp",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__cmake_fcCode",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nproblems with parsing macro arguments."
+      },
+      {
+        "label": "ARG_BINARY_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "multiValueOptions",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "update_stamp",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__FetchContent_doStepDirect",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "ARG_SOURCE_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "ARG_EXTRA",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "patch_script",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "ARG_POPULATED",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__FetchContent_doPopulation",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nExternalProject_Add(), except for QUIET and SUBBUILD_DIR."
+      },
+      {
+        "label": "CMAKE_VERIFY_INTERFACE_HEADER_SETS",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "ARG_DOWNLOAD_EXTRACT_TIMESTAMP",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "ASMJIT_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /home/siddheshdupare/Projects/Algo/new_engine/CMakeLists.txt"
+      },
+      {
+        "label": "__detailsQuoted",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "ARG_GIT_REPOSITORY",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "CMAKE_EXPORT_COMPILE_COMMANDS",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /home/siddheshdupare/Projects/Algo/new_engine/CMakeLists.txt"
+      },
+      {
+        "label": "__FetchContent_getSavedDetails",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nearlier call to __FetchContent_declareDetails()."
+      },
+      {
+        "label": "options",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__cmdArgs",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__FetchContent_setupFindPackageRedirection",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__tryFindPackageAllowed",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "singleValueOptions",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__findPackageArgs",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\npackage name and there may not need to be any further arguments."
+      },
+      {
+        "label": "_EP_DOWNLOAD_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nreuse previously downloaded content, even after a \"cmake --fresh\"."
+      },
+      {
+        "label": "Git_INCLUDE_DIRS",
+        "kind": 6,
+        "detail": "Variable",
+        "documentation": "package: Git"
+      },
+      {
+        "label": "FetchContent_SetPopulated",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nplace to call it outside of the FetchContent module)."
+      },
+      {
+        "label": "__FetchContent_MakeAvailable_eval_code",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined macro\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\npolicies instead, but we keep these here to preserve backward compatibility."
+      },
+      {
+        "label": "SDL_SHARED",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /home/siddheshdupare/Projects/Algo/new_engine/CMakeLists.txt"
+      },
+      {
+        "label": "update_script",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__cmake_srcdir",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nignored there."
+      },
+      {
+        "label": "savedDetailsPropertyName",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nthe parent project in an unexpected way, such as from a mirror or fork."
+      },
+      {
+        "label": "__cmake_add_subdirectory_args",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "subCMakeOpts",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__FetchContent_populateSubbuild",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "disconnectUpdates",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "FetchContent_Declare",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nSOURCE_DIR and BUILD_DIR."
+      },
+      {
+        "label": "_EP_STAMP_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nWe have no CMakeFiles in script mode, so keep everything together."
+      },
+      {
+        "label": "outputOptions",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "sep",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__doDirectArgs",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "capturedOutput",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "${${first_arg_var}}_LIBRARIES",
+        "kind": 6,
+        "detail": "Variable",
+        "documentation": "package: ${${first_arg_var}}"
+      },
+      {
+        "label": "__sawGlobalKeyword",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "forward_args",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nAdd back in the keyword args we pulled out and potentially tweaked/added"
+      },
+      {
+        "label": "__FetchContent_Populate",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__passthrough_vars",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__FetchContent_MakeAvailable_find_package",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined macro\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "_EP_TMP_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "cmp0170",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "CMAKE_CXX_STANDARD",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /home/siddheshdupare/Projects/Algo/new_engine/CMakeLists.txt\n\nSet default cpp standards"
+      },
+      {
+        "label": "multiValueArgs",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "patch_stamp",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "ARG_SUBBUILD_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__argsQuoted",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "propertyName",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nconfig files through its normal processing."
+      },
+      {
+        "label": "__FETCHCONTENT_COPY_FILE",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "FETCHCONTENT_FULLY_DISCONNECTED",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "FetchContent_Populate",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nan earlier call to FetchContent_Declare()."
+      },
+      {
+        "label": "CMAKE_VERIFY_PRIVATE_HEADER_SETS",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__tryFindPackage",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "var",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "quietFlag",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "GLOBAL",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "FETCHCONTENT_UPDATES_DISCONNECTED",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "CMAKE_EXPORT_FIND_PACKAGE_NAME",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "FetchContent_MakeAvailable",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined macro\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\ncalls will be available to the caller."
+      },
+      {
+        "label": "__FETCHCONTENT_CACHED_INFO",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "${${first_arg_var}}_INCLUDE_DIRS",
+        "kind": 6,
+        "detail": "Variable",
+        "documentation": "package: ${${first_arg_var}}"
+      },
+      {
+        "label": "gtest_force_shared_crt",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /home/siddheshdupare/Projects/Algo/new_engine/CMakeLists.txt"
+      },
+      {
+        "label": "download_script",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "FetchContent_GetProperties",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nif they are using the populated content in that way."
+      },
+      {
+        "label": "inFileDir",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nnot the Config and ConfigVersion forms."
+      },
+      {
+        "label": "FETCHCONTENT_QUIET",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "configFilePrefix2",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "function_for_args",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "SDL_STATIC",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /home/siddheshdupare/Projects/Algo/new_engine/CMakeLists.txt"
+      },
+      {
+        "label": "SDL_TEST",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /home/siddheshdupare/Projects/Algo/new_engine/CMakeLists.txt"
+      },
+      {
+        "label": "direct_population",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nsetting of its caller is included in the function arguments."
+      },
+      {
+        "label": "__FetchContent_declareDetails",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nbuild will be in control)."
+      },
+      {
+        "label": "__cmake_providerArgs",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "configFilePrefix1",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "oneValueArgs",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "CMAKE_CXX_STANDARD_REQUIRED",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /home/siddheshdupare/Projects/Algo/new_engine/CMakeLists.txt"
+      },
+      {
+        "label": "_EP_CMP0097",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake\n\nwe get to here, so ensure ExternalProject sees that."
+      },
+      {
+        "label": "__sawQuietKeyword",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__direct_population",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "Git_LIBRARIES",
+        "kind": 6,
+        "detail": "Variable",
+        "documentation": "package: Git"
+      },
+      {
+        "label": "args_to_parse",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "prefix",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "FETCHCONTENT_BASE_DIR",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__FetchContent_MakeAvailable_add_subdirectory",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined macro\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "do_step",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "noValueOptions",
+        "kind": 12,
+        "detail": "Value",
+        "documentation": "defined variable\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
+      },
+      {
+        "label": "__FetchContent_populateDirect",
+        "kind": 3,
+        "detail": "Function",
+        "documentation": "defined function\nfrom: /usr/share/cmake/Modules/FetchContent.cmake"
       }
     ]
   }
